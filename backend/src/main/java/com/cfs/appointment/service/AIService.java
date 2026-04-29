@@ -10,8 +10,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class AIService {
 
     private final WebClient webClient;
-    private final String apiKey;
-
+    @Value("${gemini.api.key}")
+    private String apiKey;
     public AIService(WebClient.Builder builder,
                      @Value("${gemini.api.key}") String apiKey) {
 

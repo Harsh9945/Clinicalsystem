@@ -1,63 +1,80 @@
 package com.cfs.appointment.config;
 
 import com.cfs.appointment.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.config.Customizer;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-@EnableWebSecurity
+@EnableMethodSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
 
-    @Autowired
-    @Lazy
-    private UserService userService; // Only one declaration here
-
+    private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
+    // 🔐 Authentication Manager (used in login API)
     @Bean
-    public AuthenticationProvider authenticationProvider(UserService userService, PasswordEncoder passwordEncoder) {
-        // 1. Instantiate the provider
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider(userService);
-        authProvider.setPasswordEncoder(passwordEncoder);
-        return authProvider;
+    public AuthenticationManager authenticationManager(
+            AuthenticationConfiguration config) throws Exception {
+        return config.getAuthenticationManager();
     }
+
+    // 🔐 Authentication Provider
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+public AuthenticationProvider authenticationProvider() {
+
+    DaoAuthenticationProvider provider =
+            new DaoAuthenticationProvider(userService);
+
+    provider.setPasswordEncoder(passwordEncoder); // ✅ FIXED
+
+    return provider;
+}
+
+    // 🔐 Security Filter Chain (NO circular dependency here)
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http, JwtFilter jwtFilter) throws Exception {
+
         http
-                .csrf(csrf -> csrf.disable())
-                .authenticationProvider(authenticationProvider(userService, passwordEncoder()))
-                .authorizeHttpRequests(auth -> auth
+            .csrf(csrf -> csrf.disable())
 
-                        // 🔥 PUBLIC
-                        .requestMatchers("/api/auth/**").permitAll()
-                        .requestMatchers("/test/**").permitAll()
-                        .requestMatchers("/api/doctors/verified").permitAll()
-                        .requestMatchers("/api/consultation/ai/**").permitAll()
+            // ✅ JWT = Stateless
+            .sessionManagement(sess ->
+                sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            )
 
-                        // 🔒 PROTECTED
-                        .requestMatchers("/api/appointments/book").hasAuthority("ROLE_PATIENT")
-                        .requestMatchers("/api/admin/**").hasAuthority("ROLE_ADMIN")
+            .authorizeHttpRequests(auth -> auth
 
-                        // 🔐 EVERYTHING ELSE
-                        .anyRequest().authenticated()
-                );
-        http.httpBasic(Customizer.withDefaults());
+                // 🔥 PUBLIC ENDPOINTS
+                .requestMatchers("/api/auth/**").permitAll()
+                .requestMatchers("/test/**").permitAll()
+                .requestMatchers("/api/doctors/verified").permitAll()
+                .requestMatchers("/api/consultation/ai/**").permitAll()
+
+                // 🔒 ROLE-BASED
+                .requestMatchers("/api/appointments/book").hasAuthority("ROLE_PATIENT")
+                .requestMatchers("/api/admin/**").hasAuthority("ROLE_ADMIN")
+
+                // 🔐 EVERYTHING ELSE
+                .anyRequest().authenticated()
+            )
+
+            // 🔐 Attach authentication provider
+            .authenticationProvider(authenticationProvider())
+
+            // 🔐 Add JWT filter
+            .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 }

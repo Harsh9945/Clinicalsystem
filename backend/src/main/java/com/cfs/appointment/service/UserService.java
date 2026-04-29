@@ -7,6 +7,8 @@ import com.cfs.appointment.entity.User;
 import com.cfs.appointment.repository.DoctorRepository;
 import com.cfs.appointment.repository.PatientRepository;
 import com.cfs.appointment.repository.UserRepository;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,9 +31,7 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     private FollowUpService followUpService;
-
-    // We use this to scramble passwords so they are safe in MySQL
-    @Autowired
+    
     private PasswordEncoder encoder;
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -141,5 +141,12 @@ public class UserService implements UserDetailsService {
         doctorRepository.save(doctor);
 
         return savedUser;
+    }
+    @Transactional
+    public User registerAdmin(User user){
+        user.setRole(Role.ADMIN);
+        user.setPassword(encoder.encode(user.getPassword()));
+        userRepository.save(user);
+        return user;
     }
 }
