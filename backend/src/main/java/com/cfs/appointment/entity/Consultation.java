@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Consultation {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,17 +23,18 @@ public class Consultation {
     @Column(columnDefinition = "TEXT")
     private String doctorNotes;
 
-    @Column(columnDefinition = "TEXT")
-    private String patientSymptoms; // This is what the AI will read!
+    @Column(name = "patient_symptoms", columnDefinition = "TEXT")
+    private String patientSymptoms;
 
-    @Column(columnDefinition = "TEXT")
-    private String aiReportSummary; // This is what the AI will write!
+    @Column(name = "ai_report_summary", columnDefinition = "TEXT")
+    private String aiReportSummary;
 
     private LocalDateTime completedAt;
 
-    public void setDietRecommendations(String diet) {
-    }
+    // ✅ FIXED METHOD
 
-    public void setSymptoms(String symptoms) {
+    // OPTIONAL (only if you use it)
+    public void setDietRecommendations(String diet) {
+        // implement later if needed
     }
 }

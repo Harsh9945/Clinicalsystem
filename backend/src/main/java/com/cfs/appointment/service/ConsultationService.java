@@ -42,7 +42,7 @@ public class ConsultationService {
                 .orElseThrow(() -> new RuntimeException("Consultation not found"));
 
         // Save symptoms
-        consultation.setSymptoms(symptoms);
+        consultation.setPatientSymptoms(symptoms);
 
         // Call AI safely
         String summary;
@@ -70,7 +70,7 @@ public class ConsultationService {
                     newConsultation.setAppointment(appt);
                     return newConsultation;
                 });
-        consultation.setSymptoms(symptoms);
+        consultation.setPatientSymptoms(symptoms);
 
         // 3. Call AI
         String summary;

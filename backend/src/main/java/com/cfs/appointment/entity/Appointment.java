@@ -24,4 +24,5 @@ public class Appointment {
     @ManyToOne
     @JoinColumn(name = "patient_id") // Added this
     private Patient patient;
+    private boolean isFollowUp;
 }
