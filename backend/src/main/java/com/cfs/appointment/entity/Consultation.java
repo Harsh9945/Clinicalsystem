@@ -1,11 +1,15 @@
 package com.cfs.appointment.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Consultation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,5 +31,8 @@ public class Consultation {
     private LocalDateTime completedAt;
 
     public void setDietRecommendations(String diet) {
+    }
+
+    public void setSymptoms(String symptoms) {
     }
 }

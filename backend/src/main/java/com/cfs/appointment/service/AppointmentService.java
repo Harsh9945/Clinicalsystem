@@ -23,14 +23,21 @@ public class AppointmentService {
     private PatientRepository patientRepository;
 
     public Appointment bookAppointment(AppointmentDTO dto) {
-        // 1. Look up the objects using the IDs
+
         Doctor doctor = doctorRepository.findById(dto.getDoctorid())
                 .orElseThrow(() -> new RuntimeException("Doctor not found"));
 
         Patient patient = patientRepository.findById(dto.getPatientid())
                 .orElseThrow(() -> new RuntimeException("Patient not found"));
 
-        // 2. Create the Appointment
+        // 🔥 CHECK SLOT AVAILABILITY
+        boolean exists = appointmentRepository
+                .existsByDoctorAndAppointmentTime(doctor, dto.getAppointmentTime());
+
+        if (exists) {
+            throw new RuntimeException("Slot already booked!");
+        }
+
         Appointment appointment = new Appointment();
         appointment.setDoctor(doctor);
         appointment.setPatient(patient);

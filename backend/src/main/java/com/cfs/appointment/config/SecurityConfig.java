@@ -35,14 +35,24 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
+                .authenticationProvider(authenticationProvider(userService, passwordEncoder()))
                 .authorizeHttpRequests(auth -> auth
+
+                        // 🔥 PUBLIC
                         .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/test/**").permitAll()
                         .requestMatchers("/api/doctors/verified").permitAll()
+                        .requestMatchers("/api/consultation/ai/**").permitAll()
+
+                        // 🔒 PROTECTED
                         .requestMatchers("/api/appointments/book").hasAuthority("ROLE_PATIENT")
                         .requestMatchers("/api/admin/**").hasAuthority("ROLE_ADMIN")
+
+                        // 🔐 EVERYTHING ELSE
                         .anyRequest().authenticated()
-                )
-                .httpBasic(Customizer.withDefaults());
+                );
+        http.httpBasic(Customizer.withDefaults());
+
         return http.build();
     }
 
