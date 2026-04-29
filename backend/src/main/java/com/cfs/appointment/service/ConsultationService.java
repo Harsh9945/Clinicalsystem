@@ -12,7 +12,8 @@ public class ConsultationService {
 
     @Autowired private ConsultationRepository consultationRepository;
     @Autowired private AppointmentRepository appointmentRepository;
-
+    @Autowired
+    private AIService aiService;
     public Consultation createConsultation(Long appointmentId) {
         // 1. Find the appointment
         Appointment appt = appointmentRepository.findById(appointmentId)
@@ -32,6 +33,55 @@ public class ConsultationService {
 
         consultation.setAiReportSummary(summary);
         consultation.setDietRecommendations(diet);
+
+        return consultationRepository.save(consultation);
+    }
+    public Consultation generateAIConsultation(Long consultationId, String symptoms) {
+
+        Consultation consultation = consultationRepository.findById(consultationId)
+                .orElseThrow(() -> new RuntimeException("Consultation not found"));
+
+        // Save symptoms
+        consultation.setSymptoms(symptoms);
+
+        // Call AI safely
+        String summary;
+        try {
+            summary = aiService.generateSummary(symptoms);
+        } catch (Exception e) {
+            summary = "AI service unavailable. Please try again later.";
+        }
+
+        consultation.setAiReportSummary(summary);
+
+        return consultationRepository.save(consultation);
+    }
+    public Consultation generateAIFromAppointment(Long appointmentId, String symptoms) {
+
+        // 1. Get appointment
+        Appointment appt = appointmentRepository.findById(appointmentId)
+                .orElseThrow(() -> new RuntimeException("Appointment not found"));
+
+        // 2. Create consultation
+        Consultation consultation = consultationRepository
+                .findByAppointmentId(appointmentId)
+                .orElseGet(() -> {
+                    Consultation newConsultation = new Consultation();
+                    newConsultation.setAppointment(appt);
+                    return newConsultation;
+                });
+        consultation.setSymptoms(symptoms);
+
+        // 3. Call AI
+        String summary;
+        try {
+            summary = aiService.generateSummary(symptoms);
+        } catch (Exception e) {
+            summary = "AI service unavailable";
+        }
+
+        // 4. Save result
+        consultation.setAiReportSummary(summary);
 
         return consultationRepository.save(consultation);
     }
