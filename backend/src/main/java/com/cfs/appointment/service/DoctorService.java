@@ -31,7 +31,7 @@ public class DoctorService {
     // Also add this to help Patients only see verified doctors
     public List<Doctor> getVerifiedDoctors() {
         return doctorRepository.findAll().stream()
-                .filter(doctor -> doctor.isIsverified()) // Explicit lambda check
+                .filter(doctor -> Boolean.TRUE.equals(doctor.getIsverified()))
                 .toList();
     }
 }

@@ -31,7 +31,7 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     private FollowUpService followUpService;
-    
+    @Autowired
     private PasswordEncoder encoder;
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

@@ -19,6 +19,6 @@ public class Doctor {
         private User user; // Links to the User table for login details
 
         private String specialty;
-        private double consultationFee;
-        private boolean isverified;
+        private Double consultationFee;
+        private Boolean isverified;
     }

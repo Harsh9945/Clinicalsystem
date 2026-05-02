@@ -46,6 +46,7 @@ public AuthenticationProvider authenticationProvider() {
     public SecurityFilterChain filterChain(HttpSecurity http, JwtFilter jwtFilter) throws Exception {
 
         http
+            .cors(org.springframework.security.config.Customizer.withDefaults())
             .csrf(csrf -> csrf.disable())
 
             // ✅ JWT = Stateless
