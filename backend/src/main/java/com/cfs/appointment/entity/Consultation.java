@@ -4,8 +4,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.time.LocalDateTime;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -28,13 +28,15 @@ public class Consultation {
 
     @Column(name = "ai_report_summary", columnDefinition = "TEXT")
     private String aiReportSummary;
+    
+    private String predictedDisease;
+    private String recommendedSpecialist;
+
+    @Column(name = "diet_recommendations", columnDefinition = "TEXT")
+    private String dietRecommendations;
+
+    @Column(columnDefinition = "TEXT")
+    private String ePrescription;
 
     private LocalDateTime completedAt;
-
-    // ✅ FIXED METHOD
-
-    // OPTIONAL (only if you use it)
-    public void setDietRecommendations(String diet) {
-        // implement later if needed
-    }
 }

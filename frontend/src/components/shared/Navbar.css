@@ -1,0 +1,6 @@
+.navbar-user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+}

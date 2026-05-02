@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class AppointmentService {
@@ -78,5 +79,29 @@ public class AppointmentService {
         );
 
         return saved;
+    }
+
+    public List<Appointment> getPatientAppointments(Long patientId) {
+        Patient patient = patientRepository.findById(patientId)
+                .orElseThrow(() -> new RuntimeException("Patient not found"));
+        return appointmentRepository.findByPatientOrderByAppointmentTimeDesc(patient);
+    }
+
+    public List<Appointment> getDoctorAppointments(Long doctorId) {
+        Doctor doctor = doctorRepository.findById(doctorId)
+                .orElseThrow(() -> new RuntimeException("Doctor not found"));
+        return appointmentRepository.findByDoctorOrderByAppointmentTimeDesc(doctor);
+    }
+
+    public void cancelAppointment(Long appointmentId) {
+        Appointment appointment = appointmentRepository.findById(appointmentId)
+                .orElseThrow(() -> new RuntimeException("Appointment not found"));
+        appointment.setStatus("CANCELLED");
+        appointmentRepository.save(appointment);
+    }
+
+    public Appointment getAppointmentById(Long appointmentId) {
+        return appointmentRepository.findById(appointmentId)
+                .orElseThrow(() -> new RuntimeException("Appointment not found"));
     }
 }

@@ -1,0 +1,29 @@
+.stat-card {
+  border: none;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  transition: transform 0.2s;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+}
+
+.stat-card h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.stat-card h5 {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  font-weight: 500;
+}
+
+.table-hover tbody tr {
+  transition: background-color 0.2s;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f8f9fa;
+}
