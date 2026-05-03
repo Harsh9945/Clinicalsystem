@@ -18,4 +18,8 @@ public class AppointmentRequest {
     @NotNull(message = "Appointment time is required")
     @Future(message = "Appointment must be in the future")
     private LocalDateTime appointmentTime;
+
+    private String consultationType; // "PHYSICAL" or "VIDEO"
+    private String paymentStatus;
+    private String transactionId;
 }

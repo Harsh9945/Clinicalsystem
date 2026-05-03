@@ -17,4 +17,7 @@ public class AppointmentResponseDTO {
     private LocalDateTime appointmentTime;
     private String status;
     private boolean isFollowUp;
+    private String consultationType;
+    private String paymentStatus;
+    private String transactionId;
 }

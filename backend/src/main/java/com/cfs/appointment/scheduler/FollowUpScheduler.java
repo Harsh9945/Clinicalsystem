@@ -29,7 +29,7 @@ public class FollowUpScheduler {
 
             emailService.sendEmail(
                     f.getEmail(),
-                    "Follow-up Reminder",
+                    "Clinova: Follow-up Reminder",
                     f.getMessage()
             );
 

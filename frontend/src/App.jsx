@@ -22,6 +22,9 @@ import { DoctorDashboard } from './components/doctor/DoctorDashboard';
 // Admin Pages
 import { AdminDashboard } from './components/admin/AdminDashboard';
 
+// Shared Pages
+import { VideoCallPage } from './components/shared/VideoCallPage';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -54,6 +57,12 @@ function AppRoutes() {
       <Route
         path="/admin/dashboard"
         element={<ProtectedRoute component={AdminDashboard} requiredRole="ADMIN" />}
+      />
+
+      {/* Shared Authenticated Routes */}
+      <Route
+        path="/video-call/:appointmentId"
+        element={<ProtectedRoute component={VideoCallPage} requiredRole={null} />}
       />
 
       {/* Catch all */}

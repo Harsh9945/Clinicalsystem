@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import { appointmentService } from '../../services/appointmentService';
 import { userService } from '../../services/userService';
-import { CalendarIcon, CheckCircleIcon, UserIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { PaymentModal } from '../shared/PaymentModal';
+import { CalendarIcon, CheckCircleIcon, UserIcon, XMarkIcon, VideoCameraIcon, BuildingOfficeIcon } from '@heroicons/react/24/outline';
 
 export const BookAppointmentPage = () => {
   const { user } = useContext(AuthContext);
@@ -16,6 +17,8 @@ export const BookAppointmentPage = () => {
   // Booking Modal State
   const [selectedDoctor, setSelectedDoctor] = useState(null);
   const [appointmentTime, setAppointmentTime] = useState('');
+  const [consultationType, setConsultationType] = useState('PHYSICAL');
+  const [showPayment, setShowPayment] = useState(false);
   const [bookingLoading, setBookingLoading] = useState(false);
   const [bookingSuccess, setBookingSuccess] = useState(false);
 
@@ -55,12 +58,21 @@ export const BookAppointmentPage = () => {
       return;
     }
 
+    // Instead of booking immediately, open the payment modal
+    setShowPayment(true);
+  };
+
+  const processBooking = async (transactionId) => {
+    setShowPayment(false);
     try {
       setBookingLoading(true);
       await appointmentService.bookAppointment(
         selectedDoctor.id,
         patientId,
-        appointmentTime + ':00'
+        appointmentTime + ':00',
+        consultationType,
+        'PAID',
+        transactionId
       );
       setBookingSuccess(true);
       setTimeout(() => {
@@ -211,6 +223,38 @@ export const BookAppointmentPage = () => {
                         </p>
                       </div>
 
+                      <div className="mb-6">
+                        <label className="block text-sm font-semibold text-slate-700 mb-2">
+                          Consultation Type
+                        </label>
+                        <div className="grid grid-cols-2 gap-3">
+                          <div 
+                            onClick={() => setConsultationType('PHYSICAL')}
+                            className={`cursor-pointer border rounded-xl p-3 flex items-center gap-3 transition-colors ${consultationType === 'PHYSICAL' ? 'bg-teal-50 border-teal-500 ring-1 ring-teal-500' : 'bg-white border-slate-200 hover:bg-slate-50'}`}
+                          >
+                            <div className={`p-2 rounded-lg ${consultationType === 'PHYSICAL' ? 'bg-teal-100 text-teal-600' : 'bg-slate-100 text-slate-500'}`}>
+                              <BuildingOfficeIcon className="w-5 h-5" />
+                            </div>
+                            <div>
+                              <p className="font-semibold text-sm text-slate-800">In-Person</p>
+                              <p className="text-xs text-slate-500">₹{selectedDoctor.consultationFee || 100}</p>
+                            </div>
+                          </div>
+                          <div 
+                            onClick={() => setConsultationType('VIDEO')}
+                            className={`cursor-pointer border rounded-xl p-3 flex items-center gap-3 transition-colors ${consultationType === 'VIDEO' ? 'bg-blue-50 border-blue-500 ring-1 ring-blue-500' : 'bg-white border-slate-200 hover:bg-slate-50'}`}
+                          >
+                            <div className={`p-2 rounded-lg ${consultationType === 'VIDEO' ? 'bg-blue-100 text-blue-600' : 'bg-slate-100 text-slate-500'}`}>
+                              <VideoCameraIcon className="w-5 h-5" />
+                            </div>
+                            <div>
+                              <p className="font-semibold text-sm text-slate-800">Video Call</p>
+                              <p className="text-xs text-slate-500">₹{selectedDoctor.consultationFee || 100}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
                       <div className="flex gap-3">
                         <button
                           type="button"
@@ -227,10 +271,10 @@ export const BookAppointmentPage = () => {
                           {bookingLoading ? (
                             <>
                               <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                              Confirming...
+                              Processing...
                             </>
                           ) : (
-                            'Confirm Booking'
+                            'Proceed to Pay'
                           )}
                         </button>
                       </div>
@@ -241,6 +285,14 @@ export const BookAppointmentPage = () => {
             </div>
           </div>
         )}
+
+        {/* Simulated Payment Gateway Modal */}
+        <PaymentModal 
+          isOpen={showPayment}
+          amount={selectedDoctor?.consultationFee || 100}
+          onClose={() => setShowPayment(false)}
+          onSuccess={processBooking}
+        />
 
       </div>
     </div>

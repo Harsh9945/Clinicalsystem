@@ -25,4 +25,11 @@ public class Appointment {
     @JoinColumn(name = "patient_id") // Added this
     private Patient patient;
     private boolean isFollowUp;
+    
+    @Column(length = 2000)
+    private String summary;
+
+    private String consultationType; // "PHYSICAL" or "VIDEO"
+    private String paymentStatus;    // "PENDING", "PAID", "FAILED"
+    private String transactionId;
 }
