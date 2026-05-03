@@ -73,11 +73,9 @@ public class AdminController {
     @GetMapping("/dashboard-stats")
     public DashboardStatsDTO getDashboardStats() {
         long totalDoctors = doctorRepository.count();
-        long totalPatients = userRepository.findAll().stream()
-                .filter(u -> u.getRole() != null && u.getRole().toString().equals("PATIENT"))
-                .count();
+        long totalPatients = userRepository.countByRole(com.cfs.appointment.entity.Role.PATIENT);
         long totalAppointments = appointmentRepository.count();
-        long pendingDoctors = doctorRepository.findPendingDoctors().size();
+        long pendingDoctors = doctorRepository.countPendingDoctors();
         long completedConsultations = consultationRepository.count();
 
         return new DashboardStatsDTO(totalDoctors, totalPatients, totalAppointments, pendingDoctors, completedConsultations);
@@ -123,5 +121,17 @@ public class AdminController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/all-doctors")
+    public List<Doctor> getAllDoctors() {
+        return doctorRepository.findAll();
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/all-patients")
+    public List<Patient> getAllPatients() {
+        return patientRepository.findAll();
     }
 }

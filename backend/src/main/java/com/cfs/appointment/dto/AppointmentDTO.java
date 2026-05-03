@@ -16,4 +16,8 @@ public class AppointmentDTO {
     @NotNull(message = "Appointment time is required")
     @FutureOrPresent(message = "Appointment cannot be in the past")
     private LocalDateTime appointmentTime;
+
+    private String consultationType; // "PHYSICAL" or "VIDEO"
+    private String paymentStatus;
+    private String transactionId;
 }

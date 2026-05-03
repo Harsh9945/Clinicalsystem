@@ -7,6 +7,7 @@ import com.cfs.appointment.entity.TriageSession;
 import com.cfs.appointment.repository.ConsultationRepository;
 import com.cfs.appointment.repository.TriageSessionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import java.time.LocalDateTime;
@@ -20,46 +21,55 @@ public class ChatbotService {
     @Autowired
     private ConsultationRepository consultationRepository;
     
-    private final RestTemplate restTemplate = new RestTemplate();
+    private final RestTemplate restTemplate;
+
+    public ChatbotService() {
+        // Add a timeout so it doesn't hang the whole backend
+        SimpleClientHttpRequestFactory factory = new SimpleClientHttpRequestFactory();
+        factory.setConnectTimeout(5000); // 5 seconds
+        factory.setReadTimeout(15000);    // 15 seconds (AI can be slow)
+        this.restTemplate = new RestTemplate(factory);
+    }
+
     private final String PYTHON_API_URL = "http://127.0.0.1:8000/api/v1/chat";
 
     public String processUserMessage(String username, String userMessage, Double weight, Double height) {
+        System.out.println("🤖 AI Request for: " + username + " | Message: " + userMessage);
         
-        // 1. Fetch active session or create a new one for this user
         TriageSession session = sessionRepository.findById(username).orElseGet(() -> {
             TriageSession newSession = new TriageSession();
             newSession.setUsername(username);
             return newSession;
         });
 
-        // 2. Log patient message into temporary memory
         session.getChatLog().add("Patient: " + userMessage);
 
-        // 3. Prepare payload for Python Microservice
         PythonChatRequest request = new PythonChatRequest();
         request.user_message = userMessage;
         request.current_symptoms = session.getCurrentSymptoms();
-        request.weight_kg = weight; // From frontend
-        request.height_m = height;  // From frontend
+        request.weight_kg = weight; 
+        request.height_m = height;  
 
-        // 4. Make HTTP POST to Python
+        System.out.println("🔗 Calling AI Service at: " + PYTHON_API_URL);
+        
         PythonChatResponse pythonResponse;
         try {
             pythonResponse = restTemplate.postForObject(PYTHON_API_URL, request, PythonChatResponse.class);
+            System.out.println("✅ AI Response received. Status: " + (pythonResponse != null ? pythonResponse.status : "NULL"));
         } catch (Exception e) {
-            return "System error: AI Microservice is currently unreachable. Please try again later.";
+            System.err.println("❌ AI Service Error: " + e.getMessage());
+            return "System error: AI Microservice is currently unreachable at port 8000. Please ensure the Python service is running.";
         }
 
         if (pythonResponse == null) {
             return "System error: Received empty response from AI.";
         }
 
-        // 5. Update Temporary Memory with AI response
         session.setCurrentSymptoms(pythonResponse.tracked_symptoms);
         session.getChatLog().add("AI: " + pythonResponse.bot_reply);
         
-        // 6. IF AI IS CONFIDENT: Freeze data into permanent Consultation record
-        if ("ROUTING_COMPLETE".equals(pythonResponse.status)) {
+        if ("TRIAGE_COMPLETE".equals(pythonResponse.status)) {
+            System.out.println("🏥 Triage Complete. Saving Consultation report.");
             session.setStatus("ROUTED");
             
             Consultation finalConsultation = new Consultation();
@@ -77,10 +87,7 @@ public class ChatbotService {
             consultationRepository.save(finalConsultation);
         }
 
-        // 7. Save session state to database
         sessionRepository.save(session);
-
-        // 8. Return AI reply to the Controller
         return pythonResponse.bot_reply;
     }
 

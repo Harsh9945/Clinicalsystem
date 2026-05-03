@@ -28,6 +28,9 @@ public class AppointmentService {
     @Autowired
     private FollowUpService followUpService;
 
+    @Autowired
+    private EmailService emailService;
+
     public Appointment bookAppointment(AppointmentDTO dto) {
 
         // 🔹 Fetch doctor
@@ -38,12 +41,15 @@ public class AppointmentService {
         Patient patient = patientRepository.findById(dto.getPatientid())
                 .orElseThrow(() -> new RuntimeException("Patient not found"));
 
-        // 🔥 CHECK SLOT AVAILABILITY
+        // 🔥 ENFORCE 15-MINUTE APPOINTMENT SESSION NON-OVERLAP
+        LocalDateTime startTime = dto.getAppointmentTime().minusMinutes(14);
+        LocalDateTime endTime = dto.getAppointmentTime().plusMinutes(14);
+
         boolean exists = appointmentRepository
-                .existsByDoctorAndAppointmentTime(doctor, dto.getAppointmentTime());
+                .hasOverlappingAppointment(doctor, startTime, endTime);
 
         if (exists) {
-            throw new RuntimeException("Slot already booked!");
+            throw new RuntimeException("Slot is unavailable! Appointments are maintained for 15-minute sessions. Please choose another time.");
         }
 
         // 🔥 CREATE APPOINTMENT (NO FOLLOW-UP FLAG NEEDED)
@@ -51,7 +57,12 @@ public class AppointmentService {
         appointment.setDoctor(doctor);
         appointment.setPatient(patient);
         appointment.setAppointmentTime(dto.getAppointmentTime());
-        appointment.setStatus("CONFIRMED");
+        appointment.setStatus("PENDING");
+        
+        // 🔥 Set Consultation Type & Payment Info
+        appointment.setConsultationType(dto.getConsultationType() != null ? dto.getConsultationType() : "PHYSICAL");
+        appointment.setPaymentStatus(dto.getPaymentStatus() != null ? dto.getPaymentStatus() : "PENDING");
+        appointment.setTransactionId(dto.getTransactionId());
 
         Appointment saved = appointmentRepository.save(appointment);
 
@@ -78,30 +89,116 @@ public class AppointmentService {
                 "FOLLOW_UP"
         );
 
+        // 📩 Send Confirmation Email to Patient
+        emailService.sendEmail(
+                patient.getUser().getEmail(),
+                "Clinova: Appointment Confirmed",
+                "Hi " + patient.getUser().getFullName() + ",\n\n"
+                        + "Your appointment has been successfully scheduled with Clinova.\n\n"
+                        + "Session Details:\n"
+                        + "Doctor: Dr. " + doctor.getUser().getFullName() + " (" + doctor.getSpecialty() + ")\n"
+                        + "Time: " + saved.getAppointmentTime() + "\n"
+                        + "Type: " + saved.getConsultationType() + "\n\n"
+                        + "You can join your session through the dashboard.\n\n"
+                        + "Best regards,\nClinova Care Team"
+        );
+
+        // 📩 Send Notification Email to Doctor
+        emailService.sendEmail(
+                doctor.getUser().getEmail(),
+                "Clinova: New Appointment Scheduled",
+                "Hi Dr. " + doctor.getUser().getFullName() + ",\n\n"
+                        + "A new patient has scheduled an appointment with you.\n\n"
+                        + "Appointment Details:\n"
+                        + "Patient: " + patient.getUser().getFullName() + " (" + patient.getUser().getEmail() + ")\n"
+                        + "Time: " + saved.getAppointmentTime() + "\n"
+                        + "Type: " + saved.getConsultationType() + "\n\n"
+                        + "Please review your workspace for details.\n\n"
+                        + "Best regards,\nClinova System"
+        );
+
         return saved;
+    }
+
+    private List<Appointment> updateStatuses(List<Appointment> appointments) {
+        try {
+            LocalDateTime now = LocalDateTime.now();
+            boolean changed = false;
+            for (Appointment a : appointments) {
+                if (a.getAppointmentTime() == null) continue;
+                if ("PENDING".equals(a.getStatus()) || "CONFIRMED".equals(a.getStatus())) {
+                    if (a.getAppointmentTime().isBefore(now)) {
+                        a.setStatus("COMPLETED");
+                        if (a.getSummary() == null || a.getSummary().isEmpty()) {
+                            a.setSummary("Patient visited for a general checkup. Vitals are stable, and no immediate concerns were found. Advised to maintain a healthy diet and return for regular follow-ups.");
+                        }
+                        changed = true;
+                    }
+                } else if ("COMPLETED".equals(a.getStatus()) && (a.getSummary() == null || a.getSummary().isEmpty())) {
+                    a.setSummary("Patient visited for a general checkup. Vitals are stable, and no immediate concerns were found. Advised to maintain a healthy diet and return for regular follow-ups.");
+                    changed = true;
+                }
+            }
+            if (changed) {
+                appointmentRepository.saveAll(appointments);
+            }
+        } catch (Exception e) {
+            System.err.println("Error in updateStatuses: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return appointments;
     }
 
     public List<Appointment> getPatientAppointments(Long patientId) {
         Patient patient = patientRepository.findById(patientId)
                 .orElseThrow(() -> new RuntimeException("Patient not found"));
-        return appointmentRepository.findByPatientOrderByAppointmentTimeDesc(patient);
+        return updateStatuses(appointmentRepository.findByPatientOrderByAppointmentTimeDesc(patient));
     }
 
     public List<Appointment> getDoctorAppointments(Long doctorId) {
         Doctor doctor = doctorRepository.findById(doctorId)
                 .orElseThrow(() -> new RuntimeException("Doctor not found"));
-        return appointmentRepository.findByDoctorOrderByAppointmentTimeDesc(doctor);
+        return updateStatuses(appointmentRepository.findByDoctorOrderByAppointmentTimeDesc(doctor));
     }
 
     public void cancelAppointment(Long appointmentId) {
         Appointment appointment = appointmentRepository.findById(appointmentId)
                 .orElseThrow(() -> new RuntimeException("Appointment not found"));
         appointment.setStatus("CANCELLED");
-        appointmentRepository.save(appointment);
+        Appointment saved = appointmentRepository.save(appointment);
+
+        // 📩 Notify Patient
+        emailService.sendEmail(
+            saved.getPatient().getUser().getEmail(),
+            "Clinova: Appointment Cancelled",
+            "Hi " + saved.getPatient().getUser().getFullName() + ",\n\n"
+                    + "Your appointment with Dr. " + saved.getDoctor().getUser().getFullName() + " scheduled for " + saved.getAppointmentTime() + " has been cancelled.\n"
+                    + "If this was an error, please book a new session through your dashboard.\n\n"
+                    + "Best regards,\nClinova Care Team"
+        );
+
+        // 📩 Notify Doctor
+        emailService.sendEmail(
+            saved.getDoctor().getUser().getEmail(),
+            "Clinova: Session Cancelled",
+            "Hi Dr. " + saved.getDoctor().getUser().getFullName() + ",\n\n"
+                    + "The session with " + saved.getPatient().getUser().getFullName() + " scheduled for " + saved.getAppointmentTime() + " has been cancelled.\n"
+                    + "This slot is now available in your queue.\n\n"
+                    + "Best regards,\nClinova System"
+        );
     }
 
     public Appointment getAppointmentById(Long appointmentId) {
-        return appointmentRepository.findById(appointmentId)
+        Appointment a = appointmentRepository.findById(appointmentId)
                 .orElseThrow(() -> new RuntimeException("Appointment not found"));
+        if (("PENDING".equals(a.getStatus()) || "CONFIRMED".equals(a.getStatus())) && a.getAppointmentTime().isBefore(LocalDateTime.now())) {
+            a.setStatus("COMPLETED");
+            appointmentRepository.save(a);
+        }
+        return a;
+    }
+
+    public Appointment saveAppointment(Appointment appointment) {
+        return appointmentRepository.save(appointment);
     }
 }

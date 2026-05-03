@@ -15,4 +15,7 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long> {
     boolean existsByUser(User user);
     @org.springframework.data.jpa.repository.Query("SELECT d FROM Doctor d WHERE d.isverified = false OR d.isverified IS NULL")
     List<Doctor> findPendingDoctors();
+
+    @org.springframework.data.jpa.repository.Query("SELECT count(d) FROM Doctor d WHERE d.isverified = false OR d.isverified IS NULL")
+    long countPendingDoctors();
 }

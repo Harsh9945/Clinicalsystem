@@ -4,12 +4,18 @@ export const appointmentService = {
   getVerifiedDoctors: () =>
     api.get('/doctors/verified'),
 
-  bookAppointment: (doctorId, patientId, appointmentTime) =>
+  bookAppointment: (doctorId, patientId, appointmentTime, consultationType, paymentStatus, transactionId) =>
     api.post('/appointments/book', {
       doctorid: doctorId,
       patientid: patientId,
-      appointmentTime
+      appointmentTime,
+      consultationType,
+      paymentStatus,
+      transactionId
     }),
+
+  updateAppointmentSummary: (appointmentId, summary) =>
+    api.post(`/appointments/${appointmentId}/summary`, { summary }),
 
   getAllConsultations: () =>
     api.get('/v1/consultations/all'),
@@ -60,6 +66,12 @@ export const appointmentService = {
 
   getDashboardStats: () =>
     api.get('/admin/dashboard-stats'),
+
+  getAllDoctors: () =>
+    api.get('/admin/all-doctors'),
+
+  getAllPatients: () =>
+    api.get('/admin/all-patients'),
 
   addClinicalNotes: (consultationId, doctorNotes, ePrescription) =>
     api.post(`/v1/consultations/${consultationId}/clinical-notes`, {

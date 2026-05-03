@@ -55,8 +55,16 @@ public class UserService implements UserDetailsService {
 
         if (existingUser != null) {
 
-            // If already patient → don't recreate
+            // If already patient → don't recreate but send reminder email
             if (existingUser.getRole() == Role.PATIENT) {
+                emailService.sendEmail(
+                    existingUser.getEmail(),
+                    "Clinova: Account Access",
+                    "Hi " + existingUser.getFullName() + ",\n\n"
+                            + "You already have a Clinova account. You can sign in using your existing credentials.\n"
+                            + "If you forgot your password, please contact support.\n\n"
+                            + "Stay healthy!\nClinova Team"
+                );
                 return existingUser;
             }
 
@@ -70,6 +78,15 @@ public class UserService implements UserDetailsService {
                 patient.setUser(existingUser);
                 patientRepository.save(patient);
             }
+
+            emailService.sendEmail(
+                existingUser.getEmail(),
+                "Clinova: Welcome Patient",
+                "Hi " + existingUser.getFullName() + ",\n\n"
+                        + "Your account has been updated to a Patient profile.\n"
+                        + "You can now book appointments and access our triage AI.\n\n"
+                        + "Best regards,\nClinova Care Team"
+            );
 
             return existingUser;
         }
@@ -87,16 +104,17 @@ public class UserService implements UserDetailsService {
         // ✅ Email
         emailService.sendEmail(
                 savedUser.getEmail(),
-                "Welcome to Clinical System",
+                "Welcome to Clinova",
                 "Hi " + savedUser.getFullName() + ",\n\n"
-                        + "Your patient account has been successfully created.\n"
-                        + "You can now book appointments.\n\nThank you!"
+                        + "Your Clinova patient account has been successfully created.\n"
+                        + "You can now book appointments and access your health dashboard.\n\n"
+                        + "Thank you for choosing Clinova!"
         );
 
         // ✅ Follow-up
         followUpService.createFollowUp(
                 savedUser.getEmail(),
-                "Hi " + savedUser.getFullName() + ",\n\nStay healthy!",
+                "Hi " + savedUser.getFullName() + ",\n\nWelcome to the future of healthcare!",
                 java.time.LocalDateTime.now().plusMinutes(1),
                 "PATIENT"
         );
@@ -122,8 +140,18 @@ public class UserService implements UserDetailsService {
                 doctor.setUser(existingUser);
                 doctor.setSpecialty(specialty);
                 doctor.setIsverified(false);
+                doctor.setConsultationFee(100.0); // Default fee
                 doctorRepository.save(doctor);
             }
+
+            emailService.sendEmail(
+                existingUser.getEmail(),
+                "Clinova: Doctor Profile Active",
+                "Hi Dr. " + existingUser.getFullName() + ",\n\n"
+                        + "Your account has been updated to a Practitioner profile.\n"
+                        + "Our administrators will review your credentials shortly.\n\n"
+                        + "Best regards,\nClinova Admin Team"
+            );
 
             return existingUser;
         }
@@ -138,7 +166,17 @@ public class UserService implements UserDetailsService {
         doctor.setUser(savedUser);
         doctor.setSpecialty(specialty);
         doctor.setIsverified(false);
+        doctor.setConsultationFee(100.0); // Set default fee to avoid NOT NULL error
         doctorRepository.save(doctor);
+
+        emailService.sendEmail(
+            savedUser.getEmail(),
+            "Welcome to the Clinova Medical Staff",
+            "Hi Dr. " + savedUser.getFullName() + ",\n\n"
+                    + "Thank you for joining Clinova. Your application is now under review.\n"
+                    + "Once verified, you will be able to manage your workspace and patient queue.\n\n"
+                    + "Welcome aboard!"
+        );
 
         return savedUser;
     }
@@ -146,7 +184,17 @@ public class UserService implements UserDetailsService {
     public User registerAdmin(User user){
         user.setRole(Role.ADMIN);
         user.setPassword(encoder.encode(user.getPassword()));
-        userRepository.save(user);
-        return user;
+        User savedUser = userRepository.save(user);
+        
+        emailService.sendEmail(
+            savedUser.getEmail(),
+            "Clinova: Administrative Access Granted",
+            "Hi " + savedUser.getFullName() + ",\n\n"
+                    + "Your administrative account for Clinova has been created.\n"
+                    + "You now have access to the Command Center.\n\n"
+                    + "Best regards,\nSystem Security"
+        );
+        
+        return savedUser;
     }
 }

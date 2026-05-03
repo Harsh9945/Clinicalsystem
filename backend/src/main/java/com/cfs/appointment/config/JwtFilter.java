@@ -39,7 +39,14 @@ public class JwtFilter extends OncePerRequestFilter {
         }
 
         String token = authHeader.substring(7);
-        String username = jwtUtil.extractUsername(token);
+        String username = null;
+        try {
+            username = jwtUtil.extractUsername(token);
+        } catch (Exception e) {
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.getWriter().write("Token expired or invalid");
+            return;
+        }
 
         // ✅ If username exists & not already authenticated
         if (username != null &&
