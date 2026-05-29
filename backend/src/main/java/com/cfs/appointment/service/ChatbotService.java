@@ -7,6 +7,7 @@ import com.cfs.appointment.entity.TriageSession;
 import com.cfs.appointment.repository.ConsultationRepository;
 import com.cfs.appointment.repository.TriageSessionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -31,7 +32,8 @@ public class ChatbotService {
         this.restTemplate = new RestTemplate(factory);
     }
 
-    private final String PYTHON_API_URL = "http://127.0.0.1:8000/api/v1/chat";
+    @Value("${python.api.url:http://127.0.0.1:8000/api/v1/chat}")
+    private String PYTHON_API_URL;
 
     public String processUserMessage(String username, String userMessage, Double weight, Double height) {
         System.out.println("🤖 AI Request for: " + username + " | Message: " + userMessage);
