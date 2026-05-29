@@ -1,42 +1,53 @@
 package com.cfs.appointment.service;
 
-import jakarta.mail.internet.InternetAddress;
-import jakarta.mail.internet.MimeMessage;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class EmailService {
 
-    @Autowired
-    private JavaMailSender mailSender;
+    @Value("${resend.api.key:}")
+    private String resendApiKey;
 
-    @Value("${spring.mail.username}")
+    @Value("${resend.from:Clinova Health <onboarding@resend.dev>}")
     private String senderEmail;
+
+    private final RestTemplate restTemplate = new RestTemplate();
 
     @Async
     public void sendEmail(String to, String subject, String body) {
-        System.out.println("📩 Attempting to send email to: " + to + " with subject: " + subject);
+        System.out.println("📩 Attempting to send Resend API email to: " + to + " with subject: " + subject);
+        
+        if (resendApiKey == null || resendApiKey.trim().isEmpty()) {
+            System.err.println("❌ Resend API Key is not configured (RESEND_API_KEY). Email sending skipped.");
+            return;
+        }
+
         try {
-            MimeMessage message = mailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.setBearerAuth(resendApiKey);
 
-            // Professional Sender Identity
-            helper.setFrom(new InternetAddress(senderEmail, "Clinova Health"));
-            helper.setTo(to);
-            helper.setSubject(subject);
-            helper.setText(body, false); // Plain text for better deliverability
+            Map<String, Object> payload = new HashMap<>();
+            payload.put("from", senderEmail);
+            payload.put("to", new String[]{to});
+            payload.put("subject", subject);
+            payload.put("text", body);
 
-            mailSender.send(message);
-            System.out.println("✅ Email sent successfully to: " + to);
+            HttpEntity<Map<String, Object>> request = new HttpEntity<>(payload, headers);
+            String response = restTemplate.postForObject("https://api.resend.com/emails", request, String.class);
+
+            System.out.println("✅ Email sent successfully via Resend. Response: " + response);
         } catch (Exception e) {
-            System.err.println("❌ CRITICAL: Failed to send Clinova email to [" + to + "]");
+            System.err.println("❌ CRITICAL: Failed to send Clinova email via Resend to [" + to + "]");
             System.err.println("Reason: " + e.getMessage());
-            // We don't rethrow because it's @Async and would just get swallowed anyway
         }
     }
 }
