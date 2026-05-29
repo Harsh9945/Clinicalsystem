@@ -17,6 +17,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import jakarta.annotation.PostConstruct;
 
 import java.util.Collections;
 
@@ -196,5 +197,24 @@ public class UserService implements UserDetailsService {
         );
         
         return savedUser;
+    }
+
+    @PostConstruct
+    @Transactional
+    public void seedAdminUser() {
+        try {
+            User admin = userRepository.findByEmail("admin@clinova.com").orElse(null);
+            if (admin == null) {
+                admin = new User();
+                admin.setEmail("admin@clinova.com");
+                admin.setFullName("System Admin");
+                admin.setRole(Role.ADMIN);
+            }
+            admin.setPassword(encoder.encode("harsh@945"));
+            userRepository.save(admin);
+            System.out.println("🛡️ System Admin user seeded/updated successfully with email admin@clinova.com!");
+        } catch (Exception e) {
+            System.err.println("⚠️ Error seeding admin user: " + e.getMessage());
+        }
     }
 }

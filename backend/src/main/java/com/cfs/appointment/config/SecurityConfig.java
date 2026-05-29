@@ -56,6 +56,9 @@ public AuthenticationProvider authenticationProvider() {
 
             .authorizeHttpRequests(auth -> auth
 
+                // 🛡️ SECURED ADMIN REGISTRATION
+                .requestMatchers("/api/auth/register/Admin").hasAuthority("ROLE_ADMIN")
+
                 // 🔥 PUBLIC ENDPOINTS
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/test/**").permitAll()
