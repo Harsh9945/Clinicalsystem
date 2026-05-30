@@ -26,8 +26,16 @@ public class TestController {
         return "Email Triggered";
     }
 
+    @Autowired
+    private com.cfs.appointment.repository.UserRepository userRepository;
+
     @GetMapping("/consultations")
     public java.util.List<com.cfs.appointment.entity.Consultation> getConsultations() {
         return consultationRepository.findAll();
+    }
+
+    @GetMapping("/users")
+    public java.util.List<com.cfs.appointment.entity.User> getUsers() {
+        return userRepository.findAll();
     }
 }
