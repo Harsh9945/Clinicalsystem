@@ -21,6 +21,12 @@ public class ChatbotService {
     
     @Autowired
     private ConsultationRepository consultationRepository;
+
+    @Autowired
+    private com.cfs.appointment.repository.UserRepository userRepository;
+
+    @Autowired
+    private com.cfs.appointment.repository.PatientRepository patientRepository;
     
     private final RestTemplate restTemplate;
 
@@ -80,6 +86,18 @@ public class ChatbotService {
             session.setStatus("ROUTED");
             
             Consultation finalConsultation = new Consultation();
+            
+            // Link directly to patient
+            try {
+                com.cfs.appointment.entity.User user = userRepository.findByEmail(username).orElse(null);
+                if (user != null) {
+                    com.cfs.appointment.entity.Patient patient = patientRepository.findByUser(user).orElse(null);
+                    finalConsultation.setPatient(patient);
+                }
+            } catch (Exception e) {
+                System.err.println("⚠️ Error linking patient to AI consultation: " + e.getMessage());
+            }
+
             finalConsultation.setPatientSymptoms(String.join(", ", session.getCurrentSymptoms()));
             finalConsultation.setPredictedDisease(pythonResponse.predicted_disease);
             finalConsultation.setRecommendedSpecialist(pythonResponse.specialist);

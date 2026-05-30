@@ -262,9 +262,11 @@ export const PatientDashboard = () => {
                     <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50/30 rounded-bl-[100px] -z-10 group-hover:scale-110 transition-transform"></div>
                     <div className="flex justify-between items-start mb-8">
                       <div>
-                        <h4 className="text-2xl font-black text-slate-800">Dr. {cons.appointment?.doctor?.user?.fullName}</h4>
+                        <h4 className="text-2xl font-black text-slate-800">
+                          {cons.appointment ? `Dr. ${cons.appointment.doctor?.user?.fullName}` : "Clinova AI Assistant"}
+                        </h4>
                         <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-2 flex items-center gap-2">
-                          <div className="w-1 h-1 rounded-full bg-blue-500"></div>
+                          <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
                           {new Date(cons.completedAt).toLocaleDateString(undefined, {month: 'long', day: 'numeric', year: 'numeric'})}
                         </p>
                       </div>
@@ -280,14 +282,32 @@ export const PatientDashboard = () => {
                             <SparklesIcon className="w-3 h-3" /> AI Protocol
                           </p>
                           <p className="text-xs font-black text-teal-700 uppercase">{cons.predictedDisease || 'General Review'}</p>
+                          {cons.recommendedSpecialist && (
+                            <p className="text-[9px] font-black text-teal-600 uppercase tracking-widest mt-2">
+                              Specialist: {cons.recommendedSpecialist}
+                            </p>
+                          )}
                         </div>
                       </div>
-                      <div className="bg-blue-50/30 p-8 rounded-[32px] border border-blue-50/50">
-                        <p className="text-[9px] font-black text-blue-400 uppercase tracking-widest mb-4">Practitioner Observations</p>
-                        <p className="text-sm font-bold text-slate-700 leading-relaxed">
-                          {cons.doctorNotes || 'Routine consultation records maintained.'}
-                        </p>
-                      </div>
+                      
+                      {cons.doctorNotes && (
+                        <div className="bg-blue-50/30 p-8 rounded-[32px] border border-blue-50/50">
+                          <p className="text-[9px] font-black text-blue-400 uppercase tracking-widest mb-4">Practitioner Observations</p>
+                          <p className="text-sm font-bold text-slate-700 leading-relaxed">
+                            {cons.doctorNotes}
+                          </p>
+                        </div>
+                      )}
+                      
+                      {cons.dietRecommendations && (
+                        <div className="bg-amber-50/30 p-8 rounded-[32px] border border-amber-50/50">
+                          <p className="text-[9px] font-black text-amber-500 uppercase tracking-widest mb-4">AI Customized Diet Plan</p>
+                          <div className="text-xs font-bold text-slate-700 leading-relaxed whitespace-pre-line">
+                            {cons.dietRecommendations}
+                          </div>
+                        </div>
+                      )}
+
                       {cons.ePrescription && (
                         <div className="bg-emerald-50/30 p-8 rounded-[32px] border border-emerald-50/50">
                           <p className="text-[9px] font-black text-emerald-400 uppercase tracking-widest mb-4">Digital Prescription</p>

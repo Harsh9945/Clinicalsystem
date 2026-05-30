@@ -12,4 +12,8 @@ import java.util.Optional;
 public interface ConsultationRepository extends JpaRepository<Consultation, Long> {
     Optional<Consultation> findByAppointmentId(Long appointmentId);
     List<Consultation> findByAppointmentPatient(Patient patient);
+    List<Consultation> findByPatient(Patient patient);
+
+    @org.springframework.data.jpa.repository.Query("SELECT c FROM Consultation c WHERE c.patient = :patient OR c.appointment.patient = :patient ORDER BY c.completedAt DESC")
+    List<Consultation> findAllByPatientOrAppointmentPatient(@org.springframework.data.repository.query.Param("patient") Patient patient);
 }

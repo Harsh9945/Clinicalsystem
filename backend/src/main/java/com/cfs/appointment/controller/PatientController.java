@@ -69,7 +69,7 @@ public class PatientController {
         Patient patient = patientRepository.findByUser(user)
                 .orElseThrow(() -> new RuntimeException("Patient profile not found"));
 
-        return consultationRepository.findByAppointmentPatient(patient);
+        return consultationRepository.findAllByPatientOrAppointmentPatient(patient);
     }
 
     /**

@@ -20,6 +20,10 @@ public class Consultation {
     @JoinColumn(name = "appointment_id")
     private Appointment appointment;
 
+    @ManyToOne
+    @JoinColumn(name = "patient_id")
+    private Patient patient;
+
     @Column(columnDefinition = "TEXT")
     private String doctorNotes;
 
