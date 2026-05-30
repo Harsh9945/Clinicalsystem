@@ -13,7 +13,10 @@ import {
   BuildingOfficeIcon,
   UserCircleIcon,
   BeakerIcon,
-  SparklesIcon
+  SparklesIcon,
+  TrashIcon,
+  PlusCircleIcon,
+  XCircleIcon
 } from '@heroicons/react/24/outline';
 
 export const DoctorDashboard = () => {
@@ -27,9 +30,67 @@ export const DoctorDashboard = () => {
   const [error, setError] = useState('');
   const [selectedAppointment, setSelectedAppointment] = useState(null);
 
+  // 🩺 Self-Scheduling States & Views
+  const [activeView, setActiveView] = useState('workspace'); // 'workspace' or 'schedule'
+  const [myAvailability, setMyAvailability] = useState([]);
+  const [schedLoading, setSchedLoading] = useState(false);
+  const [newSlot, setNewSlot] = useState({ dayOfWeek: 'MONDAY', startTime: '09:00', endTime: '17:00' });
+  const [schedError, setSchedError] = useState('');
+  const [schedSuccess, setSchedSuccess] = useState('');
+
   useEffect(() => {
     fetchData();
   }, []);
+
+  useEffect(() => {
+    if (activeView === 'schedule') {
+      fetchMyAvailability();
+    }
+  }, [activeView]);
+
+  const fetchMyAvailability = async () => {
+    try {
+      setSchedLoading(true);
+      setSchedError('');
+      const res = await appointmentService.getMyAvailability();
+      setMyAvailability(res.data);
+    } catch (err) {
+      setSchedError('Failed to load your availability schedule.');
+    } finally {
+      setSchedLoading(false);
+    }
+  };
+
+  const handleAddSlot = async (e) => {
+    e.preventDefault();
+    try {
+      setSchedError('');
+      setSchedSuccess('');
+      const payload = {
+        dayOfWeek: newSlot.dayOfWeek,
+        startTime: newSlot.startTime + ':00',
+        endTime: newSlot.endTime + ':00'
+      };
+      await appointmentService.addAvailability(payload);
+      setSchedSuccess('Availability slot configured successfully!');
+      fetchMyAvailability();
+    } catch (err) {
+      setSchedError(err.response?.data || 'Failed to configure slot');
+    }
+  };
+
+  const handleDeleteSlot = async (slotId) => {
+    if (!window.confirm('Delete this availability slot?')) return;
+    try {
+      setSchedError('');
+      setSchedSuccess('');
+      await appointmentService.deleteAvailability(slotId);
+      setSchedSuccess('Slot removed successfully.');
+      fetchMyAvailability();
+    } catch (err) {
+      setSchedError('Failed to remove slot');
+    }
+  };
 
   const fetchData = async () => {
     try {
@@ -128,8 +189,22 @@ export const DoctorDashboard = () => {
             <p className="mt-1 text-slate-500 font-medium">Manage your daily queue and AI-assisted records.</p>
           </div>
           <div className="bg-white p-1.5 rounded-2xl border border-slate-100 flex shadow-sm">
-            <button className="px-6 py-2.5 bg-slate-800 text-white rounded-xl text-xs font-black uppercase tracking-widest shadow-lg">Daily View</button>
-            <button className="px-6 py-2.5 text-slate-400 text-xs font-black uppercase tracking-widest hover:text-slate-600 transition-colors">Analytics</button>
+            <button
+              onClick={() => setActiveView('workspace')}
+              className={`px-6 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${
+                activeView === 'workspace' ? 'bg-slate-800 text-white shadow-lg' : 'text-slate-400 hover:text-slate-600'
+              }`}
+            >
+              Daily View
+            </button>
+            <button
+              onClick={() => setActiveView('schedule')}
+              className={`px-6 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${
+                activeView === 'schedule' ? 'bg-slate-800 text-white shadow-lg' : 'text-slate-400 hover:text-slate-600'
+              }`}
+            >
+              My Schedule
+            </button>
           </div>
         </div>
 
@@ -140,7 +215,7 @@ export const DoctorDashboard = () => {
         )}
 
         {/* Profile Card */}
-        {profile && doctorDetails && (
+        {activeView === 'workspace' && profile && doctorDetails && (
           <div className="glass-card p-10 flex flex-col md:flex-row justify-between items-center gap-8 bg-white/95">
             <div className="flex items-center gap-8">
               <div className="relative">
@@ -173,7 +248,8 @@ export const DoctorDashboard = () => {
         )}
 
         {/* Main Grid */}
-        <div className="grid grid-cols-1 xl:grid-cols-3 gap-10">
+        {activeView === 'workspace' && (
+          <div className="grid grid-cols-1 xl:grid-cols-3 gap-10">
           
           {/* Left Column: Queue */}
           <div className="xl:col-span-1 space-y-10">
@@ -444,7 +520,138 @@ export const DoctorDashboard = () => {
             )}
           </div>
 
-        </div>
+        )}
+
+        {/* Schedule Self-Management */}
+        {activeView === 'schedule' && (
+          <div className="space-y-8 animate-fade-in">
+            {schedError && (
+              <div className="bg-red-50 border border-red-100 p-5 rounded-2xl text-red-700 text-sm font-bold flex items-center gap-2">
+                <XCircleIcon className="w-5 h-5" />
+                {schedError}
+              </div>
+            )}
+
+            {schedSuccess && (
+              <div className="bg-emerald-50 border border-emerald-100 p-5 rounded-2xl text-emerald-700 text-sm font-bold flex items-center gap-2">
+                <CheckCircleIcon className="w-5 h-5" />
+                {schedSuccess}
+              </div>
+            )}
+
+            <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
+              {/* Left Form: Add Slot */}
+              <div className="xl:col-span-1">
+                <div className="glass-card p-8 bg-white space-y-6">
+                  <h4 className="text-lg font-black text-slate-800 flex items-center gap-2 pb-4 border-b border-slate-50">
+                    <PlusCircleIcon className="w-5 h-5 text-teal-500" />
+                    Configure Your Availability
+                  </h4>
+                  <form onSubmit={handleAddSlot} className="space-y-5">
+                    <div>
+                      <label className="block text-xs font-black text-slate-400 uppercase tracking-widest mb-2">Day of Week</label>
+                      <select
+                        value={newSlot.dayOfWeek}
+                        onChange={(e) => setNewSlot({ ...newSlot, dayOfWeek: e.target.value })}
+                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-bold text-slate-700 outline-none focus:border-teal-500 transition-all"
+                      >
+                        <option value="MONDAY">Monday</option>
+                        <option value="TUESDAY">Tuesday</option>
+                        <option value="WEDNESDAY">Wednesday</option>
+                        <option value="THURSDAY">Thursday</option>
+                        <option value="FRIDAY">Friday</option>
+                        <option value="SATURDAY">Saturday</option>
+                        <option value="SUNDAY">Sunday</option>
+                      </select>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-xs font-black text-slate-400 uppercase tracking-widest mb-2">Start Time</label>
+                        <input
+                          type="time"
+                          value={newSlot.startTime}
+                          onChange={(e) => setNewSlot({ ...newSlot, startTime: e.target.value })}
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-bold text-slate-700 outline-none focus:border-teal-500 transition-all"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-black text-slate-400 uppercase tracking-widest mb-2">End Time</label>
+                        <input
+                          type="time"
+                          value={newSlot.endTime}
+                          onChange={(e) => setNewSlot({ ...newSlot, endTime: e.target.value })}
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-bold text-slate-700 outline-none focus:border-teal-500 transition-all"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="w-full bg-slate-800 hover:bg-slate-900 text-white rounded-xl py-3.5 text-xs font-black uppercase tracking-widest shadow-lg hover:shadow-slate-800/10 transition-all flex justify-center items-center gap-2"
+                    >
+                      Configure Slot
+                    </button>
+                  </form>
+                </div>
+              </div>
+
+              {/* Right Grid: Week Schedule View */}
+              <div className="xl:col-span-2 space-y-6">
+                {schedLoading ? (
+                  <div className="glass-card p-24 text-center bg-white flex justify-center items-center">
+                    <div className="w-10 h-10 border-4 border-slate-100 border-t-teal-600 rounded-full animate-spin"></div>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY'].map((day) => {
+                      const daySlots = myAvailability.filter(
+                        (slot) => slot.dayOfWeek.toUpperCase() === day
+                      );
+                      return (
+                        <div key={day} className="glass-card p-6 bg-white border border-slate-100 hover:border-indigo-100 transition-all flex flex-col justify-between min-h-[160px]">
+                          <div>
+                            <h5 className="text-xs font-black text-indigo-600 uppercase tracking-widest mb-4 flex justify-between items-center">
+                              {day}
+                              <span className="bg-indigo-50 text-indigo-700 text-[9px] font-black px-2 py-0.5 rounded-full">
+                                {daySlots.length} Active
+                              </span>
+                            </h5>
+                            <div className="space-y-2.5">
+                              {daySlots.length === 0 ? (
+                                <p className="text-slate-300 font-bold text-xs italic">No active hours scheduled</p>
+                              ) : (
+                                daySlots.map((slot) => (
+                                  <div
+                                    key={slot.id}
+                                    className="flex justify-between items-center bg-slate-50 border border-slate-100 px-4 py-2.5 rounded-2xl hover:bg-white hover:border-teal-200 transition-all group"
+                                  >
+                                    <span className="text-slate-700 text-xs font-bold font-mono">
+                                      {slot.startTime.substring(0, 5)} - {slot.endTime.substring(0, 5)}
+                                    </span>
+                                    <button
+                                      onClick={() => handleDeleteSlot(slot.id)}
+                                      className="text-slate-300 hover:text-red-500 transition-colors p-1"
+                                    >
+                                      <TrashIcon className="w-4 h-4" />
+                                    </button>
+                                  </div>
+                                ))
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
       </div>
     </div>
   );

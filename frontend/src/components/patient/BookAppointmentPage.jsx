@@ -22,6 +22,29 @@ export const BookAppointmentPage = () => {
   const [bookingLoading, setBookingLoading] = useState(false);
   const [bookingSuccess, setBookingSuccess] = useState(false);
 
+  const [availability, setAvailability] = useState([]);
+  const [availabilityLoading, setAvailabilityLoading] = useState(false);
+
+  useEffect(() => {
+    if (selectedDoctor) {
+      fetchAvailability(selectedDoctor.id);
+    } else {
+      setAvailability([]);
+    }
+  }, [selectedDoctor]);
+
+  const fetchAvailability = async (doctorId) => {
+    try {
+      setAvailabilityLoading(true);
+      const res = await appointmentService.getDoctorAvailability(doctorId);
+      setAvailability(res.data);
+    } catch (err) {
+      console.error('Failed to load doctor availability', err);
+    } finally {
+      setAvailabilityLoading(false);
+    }
+  };
+
   useEffect(() => {
     fetchDoctorsAndPatient();
   }, []);
@@ -204,6 +227,31 @@ export const BookAppointmentPage = () => {
                         {error}
                       </div>
                     )}
+
+                    {/* Weekly Availability Info Block */}
+                    <div className="mb-6 p-4 bg-slate-50 border border-slate-100 rounded-xl">
+                      <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2.5">Weekly Working Hours</p>
+                      {availabilityLoading ? (
+                        <p className="text-xs text-slate-400 animate-pulse">Loading hours...</p>
+                      ) : availability.length === 0 ? (
+                        <p className="text-xs text-amber-600 font-bold">⚠️ Practitioner has not configured hours yet. Please contact administration.</p>
+                      ) : (
+                        <div className="space-y-1.5 max-h-[120px] overflow-y-auto pr-1">
+                          {['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY'].map(day => {
+                            const daySlots = availability.filter(slot => slot.dayOfWeek.toUpperCase() === day);
+                            if (daySlots.length === 0) return null;
+                            return (
+                              <div key={day} className="flex justify-between items-center text-xs font-bold text-slate-600">
+                                <span className="capitalize">{day.toLowerCase()}:</span>
+                                <span className="font-mono text-teal-600">
+                                  {daySlots.map(s => `${s.startTime.substring(0, 5)} - ${s.endTime.substring(0, 5)}`).join(', ')}
+                                </span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </div>
 
                     <form onSubmit={handleBookAppointment}>
                       <div className="mb-6">

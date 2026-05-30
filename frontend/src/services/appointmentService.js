@@ -85,5 +85,18 @@ export const appointmentService = {
       message,
       type,
       days
-    })
+    }),
+
+  // Availability endpoints
+  getDoctorAvailability: (doctorId) =>
+    api.get(`/availability/doctor/${doctorId}`),
+
+  getMyAvailability: () =>
+    api.get('/availability/mine'),
+
+  addAvailability: (payload) =>
+    api.post('/availability', payload),
+
+  deleteAvailability: (id) =>
+    api.delete(`/availability/${id}`)
 };

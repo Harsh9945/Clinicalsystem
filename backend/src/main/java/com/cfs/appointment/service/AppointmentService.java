@@ -7,6 +7,8 @@ import com.cfs.appointment.entity.Patient;
 import com.cfs.appointment.repository.AppointmentRepository;
 import com.cfs.appointment.repository.DoctorRepository;
 import com.cfs.appointment.repository.PatientRepository;
+import com.cfs.appointment.entity.DoctorAvailability;
+import com.cfs.appointment.repository.DoctorAvailabilityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +28,9 @@ public class AppointmentService {
     private PatientRepository patientRepository;
 
     @Autowired
+    private DoctorAvailabilityRepository doctorAvailabilityRepository;
+
+    @Autowired
     private FollowUpService followUpService;
 
     @Autowired
@@ -40,6 +45,30 @@ public class AppointmentService {
         // 🔹 Fetch patient
         Patient patient = patientRepository.findById(dto.getPatientid())
                 .orElseThrow(() -> new RuntimeException("Patient not found"));
+
+        // 🩺 ENFORCE DOCTOR AVAILABILITY VALIDATION
+        java.time.DayOfWeek dayOfWeek = dto.getAppointmentTime().getDayOfWeek();
+        java.time.LocalTime appTime = dto.getAppointmentTime().toLocalTime();
+
+        List<DoctorAvailability> availabilities = doctorAvailabilityRepository.findByDoctor(doctor);
+        if (availabilities.isEmpty()) {
+            throw new RuntimeException("This doctor has not configured availability hours yet. Please contact clinic administration.");
+        }
+
+        boolean inAvailability = false;
+        for (DoctorAvailability slot : availabilities) {
+            if (slot.getDayOfWeek().equalsIgnoreCase(dayOfWeek.name())) {
+                // Ensure appointment fits entirely inside the slot
+                if (!appTime.isBefore(slot.getStartTime()) && !appTime.plusMinutes(15).isAfter(slot.getEndTime())) {
+                    inAvailability = true;
+                    break;
+                }
+            }
+        }
+
+        if (!inAvailability) {
+            throw new RuntimeException("Selected time falls outside the doctor's weekly active working hours.");
+        }
 
         // 🔥 ENFORCE 15-MINUTE APPOINTMENT SESSION NON-OVERLAP
         LocalDateTime startTime = dto.getAppointmentTime().minusMinutes(14);
