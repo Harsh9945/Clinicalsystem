@@ -22,5 +22,8 @@ public class TriageSession {
     @ElementCollection
     private List<String> currentSymptoms = new ArrayList<>();
     
+    @ElementCollection
+    private List<String> deniedSymptoms = new ArrayList<>();
+    
     private String status = "ACTIVE"; // "ACTIVE" or "ROUTED"
 }

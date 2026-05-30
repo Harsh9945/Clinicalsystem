@@ -7,4 +7,6 @@ public class PythonChatRequest {
     public List<String> current_symptoms;
     public Double weight_kg; 
     public Double height_m;  
+    public List<String> denied_symptoms;
+    public List<String> chat_history;
 }

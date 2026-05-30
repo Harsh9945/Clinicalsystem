@@ -10,4 +10,5 @@ public class PythonChatResponse {
     public Double confidence;
     public String specialist;
     public String diet_plan;
+    public List<String> denied_symptoms;
 }

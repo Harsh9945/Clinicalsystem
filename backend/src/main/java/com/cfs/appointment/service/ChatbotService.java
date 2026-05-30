@@ -49,8 +49,10 @@ public class ChatbotService {
         PythonChatRequest request = new PythonChatRequest();
         request.user_message = userMessage;
         request.current_symptoms = session.getCurrentSymptoms();
+        request.denied_symptoms = session.getDeniedSymptoms();
         request.weight_kg = weight; 
         request.height_m = height;  
+        request.chat_history = session.getChatLog();
 
         System.out.println("🔗 Calling AI Service at: " + PYTHON_API_URL);
         
@@ -68,6 +70,9 @@ public class ChatbotService {
         }
 
         session.setCurrentSymptoms(pythonResponse.tracked_symptoms);
+        if (pythonResponse.denied_symptoms != null) {
+            session.setDeniedSymptoms(pythonResponse.denied_symptoms);
+        }
         session.getChatLog().add("AI: " + pythonResponse.bot_reply);
         
         if ("TRIAGE_COMPLETE".equals(pythonResponse.status)) {
