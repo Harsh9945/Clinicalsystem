@@ -13,6 +13,9 @@ public class TestController {
     @Autowired
     private EmailService emailService;
 
+    @Autowired
+    private com.cfs.appointment.repository.ConsultationRepository consultationRepository;
+
     @GetMapping("/email")
     public String testEmail() {
         emailService.sendEmail(
@@ -21,5 +24,10 @@ public class TestController {
                 "If you received this, email is working!"
         );
         return "Email Triggered";
+    }
+
+    @GetMapping("/consultations")
+    public java.util.List<com.cfs.appointment.entity.Consultation> getConsultations() {
+        return consultationRepository.findAll();
     }
 }
