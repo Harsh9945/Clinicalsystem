@@ -28,7 +28,7 @@ public class ChatbotService {
         // Add a timeout so it doesn't hang the whole backend
         SimpleClientHttpRequestFactory factory = new SimpleClientHttpRequestFactory();
         factory.setConnectTimeout(5000); // 5 seconds
-        factory.setReadTimeout(15000);    // 15 seconds (AI can be slow)
+        factory.setReadTimeout(30000);    // 30 seconds (AI can be slow under load)
         this.restTemplate = new RestTemplate(factory);
     }
 
@@ -60,7 +60,7 @@ public class ChatbotService {
             System.out.println("✅ AI Response received. Status: " + (pythonResponse != null ? pythonResponse.status : "NULL"));
         } catch (Exception e) {
             System.err.println("❌ AI Service Error: " + e.getMessage());
-            return "System error: AI Microservice is currently unreachable at port 8000. Please ensure the Python service is running.";
+            return "System error: The AI Triage Assistant timed out or is currently busy. Please try sending your message again in a moment.";
         }
 
         if (pythonResponse == null) {
