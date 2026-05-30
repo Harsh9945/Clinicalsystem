@@ -519,8 +519,8 @@ export const DoctorDashboard = () => {
               </div>
             )}
           </div>
-
-        )}
+        </div>
+      )}
 
         {/* Schedule Self-Management */}
         {activeView === 'schedule' && (
