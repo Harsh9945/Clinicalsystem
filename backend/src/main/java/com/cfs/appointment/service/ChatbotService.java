@@ -68,7 +68,7 @@ public class ChatbotService {
             System.out.println("✅ AI Response received. Status: " + (pythonResponse != null ? pythonResponse.status : "NULL"));
         } catch (Exception e) {
             System.err.println("❌ AI Service Error: " + e.getMessage());
-            return "System error: The AI Triage Assistant timed out or is currently busy. Please try sending your message again in a moment.";
+            return "I am currently having trouble connecting to my diagnostic engine. To support you right away, please consult a General Physician or book an appointment with our clinical staff directly. You can also try resetting this chat or trying again in a few moments.";
         }
 
         if (pythonResponse == null) {
