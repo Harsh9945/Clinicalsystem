@@ -13,6 +13,11 @@ public class TestController {
     @Autowired
     private EmailService emailService;
 
+    @GetMapping("/health")
+    public String health() {
+        return "UP";
+    }
+
     @Autowired
     private com.cfs.appointment.repository.ConsultationRepository consultationRepository;
 

@@ -254,6 +254,11 @@ def finalize_diagnosis(ml_predictions: list, current_symptoms: list, denied_symp
 # ==========================================
 # 4. THE MASTER ENDPOINT
 # ==========================================
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
+
+
 @app.post("/api/v1/chat")
 def handle_chat(request: ChatRequest):
     try:
