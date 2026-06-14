@@ -33,11 +33,18 @@ except Exception as e:
 MODEL_ID = "gemini-2.5-flash"
 
 # Load Machine Learning Artifacts
+model = None
+symptoms_list = []
+specialist_map = {}
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 try:
-    model = joblib.load('triage_model.pkl')
-    symptoms_list = joblib.load('symptoms_list.pkl')
-    with open('specialist_mapping.json', 'r') as f:
+    model = joblib.load(os.path.join(BASE_DIR, 'triage_model.pkl'))
+    symptoms_list = joblib.load(os.path.join(BASE_DIR, 'symptoms_list.pkl'))
+    with open(os.path.join(BASE_DIR, 'specialist_mapping.json'), 'r') as f:
         specialist_map = json.load(f)
+    print("[INFO] Machine Learning Artifacts loaded successfully.")
 except Exception as e:
     print(f"Error loading ML files: {e}. Please ensure .pkl and .json files are in the directory.")
 

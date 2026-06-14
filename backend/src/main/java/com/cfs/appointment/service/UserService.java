@@ -111,15 +111,6 @@ public class UserService implements UserDetailsService {
                         + "You can now book appointments and access your health dashboard.\n\n"
                         + "Thank you for choosing Clinova!"
         );
-
-        // ✅ Follow-up
-        followUpService.createFollowUp(
-                savedUser.getEmail(),
-                "Hi " + savedUser.getFullName() + ",\n\nWelcome to the future of healthcare!",
-                java.time.LocalDateTime.now().plusMinutes(1),
-                "PATIENT"
-        );
-
         return savedUser;
     }
     @Transactional
