@@ -262,6 +262,7 @@ def finalize_diagnosis(ml_predictions: list, current_symptoms: list, denied_symp
 # 4. THE MASTER ENDPOINT
 # ==========================================
 @app.get("/health")
+@app.head("/health")
 def health_check():
     return {"status": "ok"}
 
