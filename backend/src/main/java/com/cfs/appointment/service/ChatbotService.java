@@ -60,11 +60,26 @@ public class ChatbotService {
         request.height_m = height;  
         request.chat_history = session.getChatLog();
 
-        System.out.println("🔗 Calling AI Service at: " + PYTHON_API_URL);
+        // Normalize the Python API URL to ensure it has the correct endpoint path
+        String resolvedUrl = PYTHON_API_URL;
+        if (resolvedUrl != null) {
+            resolvedUrl = resolvedUrl.trim();
+            if (!resolvedUrl.endsWith("/api/v1/chat")) {
+                if (resolvedUrl.endsWith("/")) {
+                    resolvedUrl = resolvedUrl + "api/v1/chat";
+                } else {
+                    resolvedUrl = resolvedUrl + "/api/v1/chat";
+                }
+            }
+        } else {
+            resolvedUrl = "http://127.0.0.1:8000/api/v1/chat";
+        }
+
+        System.out.println("🔗 Calling AI Service at: " + resolvedUrl);
         
         PythonChatResponse pythonResponse;
         try {
-            pythonResponse = restTemplate.postForObject(PYTHON_API_URL, request, PythonChatResponse.class);
+            pythonResponse = restTemplate.postForObject(resolvedUrl, request, PythonChatResponse.class);
             System.out.println("✅ AI Response received. Status: " + (pythonResponse != null ? pythonResponse.status : "NULL"));
         } catch (Exception e) {
             System.err.println("❌ AI Service Error: " + e.getMessage());
