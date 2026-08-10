@@ -96,9 +96,15 @@ To run the entire Clinova ecosystem on your local machine:
    export GEMINI_API_KEY=your_gemini_api_key_here
    ```
 5. Start the FastAPI server:
-   ```bash
-   uvicorn main:app --reload --port 8000
-   ```
+   * **On Windows (Recommended)**:
+     ```bash
+     start_ai.bat
+     ```
+     *(This runs the service with CPU/memory optimizations on Windows via `watchfiles` and sets up a crash recovery restart loop)*
+   * **On macOS/Linux**:
+     ```bash
+     uvicorn main:app --reload --port 8000
+     ```
 
 ---
 

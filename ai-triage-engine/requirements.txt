@@ -9,3 +9,4 @@ uvicorn
 scikit-learn
 matplotlib
 seaborn
+watchfiles
