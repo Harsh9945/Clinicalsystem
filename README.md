@@ -1,6 +1,9 @@
 # 🏥 Clinova: Smart Clinical Command Center & AI Triage System
 
-Clinova is an enterprise-grade, cloud-deployed, AI-assisted Clinical Command Center and Staff Orchestration platform. It decouples complex clinical scheduling, database administration, and artificial intelligence diagnostic reasoning into a unified, high-performance service architecture.
+Clinova is an enterprise-grade, cloud-deployed, AI-assisted Clinical Command Center and Staff Orchestration platform. It decouples complex clinical scheduling, database administration, and artificial intelligence diagnostic reasoning into a unified, high-performance microservice architecture.
+
+> [!TIP]
+> 📖 **Full System Architecture Document:** For complete High-Level Design (HLD), Low-Level Design (LLD), component class diagrams, and multi-turn sequence diagrams, see [SYSTEM_ARCHITECTURE_HLD_LLD.md](./SYSTEM_ARCHITECTURE_HLD_LLD.md).
 
 ---
 
@@ -13,8 +16,12 @@ graph TD
     A["React Frontend (Vercel)"] -->|HTTPS / JWT Auth| B["Spring Boot Backend (Railway)"]
     B -->|JPA / JDBC| C["MySQL Database (Railway)"]
     B -->|Asynchronous REST| D["FastAPI AI Engine (Railway)"]
-    D -->|Google GenAI Client| E["Gemini 2.5 Flash API"]
-    B -->|Asynchronous HTTPS| F["Brevo Email REST API (Port 443)"]
+    D -->|Parametric Classifier| E["Logistic Regression (41 Diseases, 132 Symptoms)"]
+    D -->|Dense Vector RAG| F["ChromaDB (gemini-embedding-001)"]
+    E -->|Prior Probabilities| G["Gemini 2.5 Flash Arbiter"]
+    F -->|Medical Evidence| G
+    G -->|Grounded Diagnosis & Diet| B
+    B -->|Transactional HTTPS| H["Brevo Email REST API"]
 ```
 
 ---
@@ -22,10 +29,12 @@ graph TD
 ## ✨ Core Features
 
 ### 👤 1. Patient Portal & Wellness Center
-* **Empathetic AI Triage Chat**: Real-time diagnostic chatbot powered by Scikit-Learn classification algorithms and Gemini LLM context memory.
-* **Tailored 2-Day Diets**: Automatically designs custom, vitals-aware daily nutrition plans on triage completion.
-* **Instant Booking**: Fetches real-time physician hours grids, allowing patients to schedule physically or virtually.
-* **Simulated Secure Payment Gateway**: Multi-step payment widget validation for secure patient copays.
+* **Hybrid AI Triage Engine (41 Conditions, 132 Symptoms)**: Combines statistical classification (calibrated Logistic Regression) with dense vector semantic search (ChromaDB + `gemini-embedding-001`) and cognitive arbitration (Gemini 2.5 Flash).
+* **Empirical Diagnostic Tie-Breaking**: Automatically detects when patient confidence is ambiguous ($< 65\%$) and asks targeted clinical discriminator questions.
+* **Evidence-Grounded Explanations**: Generates natural language rationales citing hallmark and excluded symptoms from clinical reference literature.
+* **Tailored 2-Day Recovery Diets**: Automatically designs custom, vitals-aware daily nutrition plans on triage completion.
+* **Instant Specialist Booking**: Automatically maps diagnoses to 41 clinical specialties and links directly to physician availability grids.
+* **Simulated Secure Payment Gateway**: Multi-step payment validation for secure patient copays.
 
 ### 🩺 2. Physician Workspace
 * **Live Patient Queue**: Visually tracks and displays active, upcoming, and past daily appointments.
@@ -40,20 +49,40 @@ graph TD
 
 ---
 
+## 🔬 Empirical Model & RAG Performance
+
+The AI engine was benchmarked on **984 held-out stratified test records** across 41 diseases and 132 symptoms:
+
+### Model Benchmark: Logistic Regression vs. Random Forest
+* **Logistic Regression (Production)**: **100.00% Accuracy**, **1.00 Macro F1** (Selected for calibrated Bayesian posterior probabilities needed for clinical thresholding).
+* **Random Forest Baseline**: **100.00% Accuracy**, **1.00 Macro F1**.
+
+### Real-World Symptom Ablation Study
+When patients report sparse, realistic complaints instead of complete textbook vectors:
+
+| Symptoms Shown ($k$) | Mean Classifier Confidence | Classifier Accuracy | % Cases Below Triage Threshold ($< 65\%$) | % Cases in Genuine Tie (Margin $< 15\%$) |
+| :---: | :---: | :---: | :---: | :---: |
+| **$k = 2$ symptoms** | **28.63%** | **59.86%** | **90.35%** | **52.34%** |
+| **$k = 3$ symptoms** | **46.41%** | **74.29%** | **66.36%** | **38.82%** |
+| **$k = 4$ symptoms** | **60.11%** | **86.08%** | **45.43%** | **25.51%** |
+| **Full Textbook** | **96.21%** | **100.00%** | **0.00%** | **0.00%** |
+
+*Takeaway:* At initial intake ($k=2$), the classifier alone is in a tie **52.34% of the time**. The ChromaDB RAG layer provides the differential medical evidence that allows the Gemini arbiter to break ties accurately.
+
+---
+
 ## 🛠️ Technology Stack
 
 | Layer | Technologies |
 | :--- | :--- |
 | **Frontend** | React.js, Tailwind CSS, Axios, Heroicons, Recharts |
-| **Backend API** | Java 21, Spring Boot 3.x, Spring Security 6, JWT, JPA, Hibernate, MySQL |
-| **AI Triage Microservice** | Python 3.10+, FastAPI, Gemini 2.5 Flash, Scikit-Learn Classifiers, NumPy |
-| **Integrations** | Brevo HTTP Mail Client API, Port 443 (HTTPS REST) |
+| **Backend API** | Java 21, Spring Boot 3.x, Spring Security 6, JWT, JPA, Hibernate, MySQL 8 |
+| **AI Triage Microservice** | Python 3.12, FastAPI, Google Gemini 2.5 Flash, `gemini-embedding-001`, ChromaDB, Scikit-Learn, Pandas, NumPy |
+| **Integrations** | Brevo HTTP Mail Client API (Port 443 HTTPS REST), Google GenAI SDK |
 
 ---
 
 ## 🚀 Local Development Setup
-
-To run the entire Clinova ecosystem on your local machine:
 
 ### Prerequisites
 * **Java**: JDK 21+ installed and configured.
@@ -96,11 +125,10 @@ To run the entire Clinova ecosystem on your local machine:
    export GEMINI_API_KEY=your_gemini_api_key_here
    ```
 5. Start the FastAPI server:
-   * **On Windows (Recommended)**:
+   * **On Windows**:
      ```bash
      start_ai.bat
      ```
-     *(This runs the service with CPU/memory optimizations on Windows via `watchfiles` and sets up a crash recovery restart loop)*
    * **On macOS/Linux**:
      ```bash
      uvicorn main:app --reload --port 8000
@@ -113,7 +141,7 @@ To run the entire Clinova ecosystem on your local machine:
    ```bash
    cd ../backend
    ```
-2. *(Optional)* Update your database credentials in `src/main/resources/application.properties` (defaults to port `3306`, username `root`, password `harsh@945`).
+2. Configure credentials in `src/main/resources/application.properties` (defaults to port `3306`, username `root`, password `harsh@945`).
 3. Set your environment variables:
    ```bash
    # On Windows:
@@ -146,7 +174,7 @@ To run the entire Clinova ecosystem on your local machine:
    ```bash
    npm start
    ```
-4. Open your browser and navigate to `http://localhost:3000` to access the Clinova workspace!
+4. Open your browser and navigate to `http://localhost:3000` to access Clinova!
 
 ---
 
@@ -158,10 +186,10 @@ Clinova uses automated CI/CD pipelines:
 * **Root Directory**: `frontend`
 * **Build Command**: `npm run build`
 * **Output Directory**: `build`
-* **Environment Variable**: `REACT_APP_API_URL` set to your live Spring Boot URL (e.g. `https://your-api.railway.app/api`).
+* **Environment Variable**: `REACT_APP_API_URL` set to your live Spring Boot URL.
 
 ### Backend (Railway)
-* **Java API Service**: Root Directory set to `/backend`. Port binds dynamically to the cloud environment.
-* **MySQL Service**: Dynamic instance automatically linked to Java datasource configurations.
+* **Java API Service**: Root Directory set to `/backend`. Port binds dynamically to `${PORT:8080}`.
+* **MySQL Service**: Dynamic instance linked to Java datasource configurations.
 * **Python AI Service**: Root directory `/ai-triage-engine`. Environment variable `GEMINI_API_KEY` bound to Google AI studio credentials.
-* **Linking**: Java backend uses `PYTHON_API_URL` environment variable targeting the Python microservice URL + `/api/v1/chat`.
+* **Linking**: Java backend uses `PYTHON_API_URL` targeting the Python microservice URL + `/api/v1/chat`.
