@@ -1,29 +1,127 @@
-Overall Accuracy: 79.80%
+================================================================================
+CLINICAL SYSTEM AI TRIAGE ENGINE: MODEL BENCHMARK & EVALUATION REPORT
+================================================================================
+Dataset: 4,920 balanced records, 41 diseases, 132 binary symptom indicators
+Validation Strategy: Stratified 80/20 Train/Test Split (984 held-out test records, 24 per disease)
 
-Classification Report (Precision, Recall, F1-Score):
-                           precision    recall  f1-score   support
+--------------------------------------------------------------------------------
+1. EXECUTIVE SUMMARY & COMPARISON
+--------------------------------------------------------------------------------
+Model A: Logistic Regression (C=0.5, max_iter=1000)
+- Test Accuracy:  100.00%
+- Weighted F1:    100.00%
+- Production Choice: SELECTED
+- Rationale: Logistic Regression produces strictly calibrated posterior probabilities
+  P(Disease | Symptoms) via the softmax function, making it ideal for healthcare triage
+  thresholding (e.g. asking follow-up questions when top confidence < 65%).
 
-                     Acne       0.82      0.77      0.80       122
-                  Allergy       0.82      0.83      0.82       103
-                   Asthma       0.86      0.86      0.86        99
-               Bronchitis       0.77      0.66      0.71        95
-                 COVID-19       0.68      0.71      0.69        78
-              Common Cold       0.77      0.88      0.82        97
-Conjunctivitis (Pink Eye)       0.87      0.81      0.84       107
-                   Eczema       0.80      0.87      0.84       102
-         Fungal Infection       0.78      0.69      0.73        90
-                     GERD       0.64      0.65      0.65        95
-          Gastroenteritis       0.88      0.87      0.87       115
-             Hypertension       0.68      0.60      0.64       102
-          Influenza (Flu)       0.81      0.82      0.82       101
-                 Migraine       0.73      0.81      0.77        91
-           Osteoarthritis       0.79      0.81      0.80        96
-             Peptic Ulcer       0.76      0.86      0.81       105
-                Psoriasis       0.87      0.76      0.81       103
-              Tonsillitis       0.91      0.90      0.90       117
-          Type 2 Diabetes       0.80      0.85      0.83        92
-  Urinary Tract Infection       0.86      0.91      0.89        90
+Model B: Random Forest Classifier (n_estimators=100, max_depth=15)
+- Test Accuracy:  100.00%
+- Weighted F1:    100.00%
+- Comparison: Random Forest performs robust non-linear partitioning, but tree leaf fraction
+  averaging produces uncalibrated probabilities that tend to over-cluster near 0 and 1,
+  making dynamic clinical follow-up thresholding less smooth.
 
-                 accuracy                           0.80      2000
-                macro avg       0.79      0.80      0.79      2000
-             weighted avg       0.80      0.80      0.80      2000
+--------------------------------------------------------------------------------
+2. DETAILED CLASSIFICATION REPORT (LOGISTIC REGRESSION - PRODUCTION MODEL)
+--------------------------------------------------------------------------------
+                                         precision    recall  f1-score   support
+
+(vertigo) Paroxysmal Positional Vertigo       1.00      1.00      1.00        24
+                                   AIDS       1.00      1.00      1.00        24
+                                   Acne       1.00      1.00      1.00        24
+                    Alcoholic Hepatitis       1.00      1.00      1.00        24
+                                Allergy       1.00      1.00      1.00        24
+                              Arthritis       1.00      1.00      1.00        24
+                       Bronchial Asthma       1.00      1.00      1.00        24
+                   Cervical Spondylosis       1.00      1.00      1.00        24
+                            Chicken Pox       1.00      1.00      1.00        24
+                    Chronic Cholestasis       1.00      1.00      1.00        24
+                            Common Cold       1.00      1.00      1.00        24
+                                 Dengue       1.00      1.00      1.00        24
+                               Diabetes       1.00      1.00      1.00        24
+          Dimorphic hemorrhoids (piles)       1.00      1.00      1.00        24
+                          Drug Reaction       1.00      1.00      1.00        24
+                       Fungal Infection       1.00      1.00      1.00        24
+                                   GERD       1.00      1.00      1.00        24
+                        Gastroenteritis       1.00      1.00      1.00        24
+                           Heart Attack       1.00      1.00      1.00        24
+                            Hepatitis A       1.00      1.00      1.00        24
+                            Hepatitis B       1.00      1.00      1.00        24
+                            Hepatitis C       1.00      1.00      1.00        24
+                            Hepatitis D       1.00      1.00      1.00        24
+                            Hepatitis E       1.00      1.00      1.00        24
+                           Hypertension       1.00      1.00      1.00        24
+                        Hyperthyroidism       1.00      1.00      1.00        24
+                           Hypoglycemia       1.00      1.00      1.00        24
+                         Hypothyroidism       1.00      1.00      1.00        24
+                               Impetigo       1.00      1.00      1.00        24
+                               Jaundice       1.00      1.00      1.00        24
+                                Malaria       1.00      1.00      1.00        24
+                               Migraine       1.00      1.00      1.00        24
+                         Osteoarthritis       1.00      1.00      1.00        24
+           Paralysis (Brain Hemorrhage)       1.00      1.00      1.00        24
+                   Peptic ulcer disease       1.00      1.00      1.00        24
+                              Pneumonia       1.00      1.00      1.00        24
+                              Psoriasis       1.00      1.00      1.00        24
+                           Tuberculosis       1.00      1.00      1.00        24
+                                Typhoid       1.00      1.00      1.00        24
+                Urinary Tract Infection       1.00      1.00      1.00        24
+                         Varicose Veins       1.00      1.00      1.00        24
+
+                               accuracy                           1.00       984
+                              macro avg       1.00      1.00      1.00       984
+                           weighted avg       1.00      1.00      1.00       984
+
+
+--------------------------------------------------------------------------------
+3. DETAILED CLASSIFICATION REPORT (RANDOM FOREST CLASSIFIER)
+--------------------------------------------------------------------------------
+                                         precision    recall  f1-score   support
+
+(vertigo) Paroxysmal Positional Vertigo       1.00      1.00      1.00        24
+                                   AIDS       1.00      1.00      1.00        24
+                                   Acne       1.00      1.00      1.00        24
+                    Alcoholic Hepatitis       1.00      1.00      1.00        24
+                                Allergy       1.00      1.00      1.00        24
+                              Arthritis       1.00      1.00      1.00        24
+                       Bronchial Asthma       1.00      1.00      1.00        24
+                   Cervical Spondylosis       1.00      1.00      1.00        24
+                            Chicken Pox       1.00      1.00      1.00        24
+                    Chronic Cholestasis       1.00      1.00      1.00        24
+                            Common Cold       1.00      1.00      1.00        24
+                                 Dengue       1.00      1.00      1.00        24
+                               Diabetes       1.00      1.00      1.00        24
+          Dimorphic hemorrhoids (piles)       1.00      1.00      1.00        24
+                          Drug Reaction       1.00      1.00      1.00        24
+                       Fungal Infection       1.00      1.00      1.00        24
+                                   GERD       1.00      1.00      1.00        24
+                        Gastroenteritis       1.00      1.00      1.00        24
+                           Heart Attack       1.00      1.00      1.00        24
+                            Hepatitis A       1.00      1.00      1.00        24
+                            Hepatitis B       1.00      1.00      1.00        24
+                            Hepatitis C       1.00      1.00      1.00        24
+                            Hepatitis D       1.00      1.00      1.00        24
+                            Hepatitis E       1.00      1.00      1.00        24
+                           Hypertension       1.00      1.00      1.00        24
+                        Hyperthyroidism       1.00      1.00      1.00        24
+                           Hypoglycemia       1.00      1.00      1.00        24
+                         Hypothyroidism       1.00      1.00      1.00        24
+                               Impetigo       1.00      1.00      1.00        24
+                               Jaundice       1.00      1.00      1.00        24
+                                Malaria       1.00      1.00      1.00        24
+                               Migraine       1.00      1.00      1.00        24
+                         Osteoarthritis       1.00      1.00      1.00        24
+           Paralysis (Brain Hemorrhage)       1.00      1.00      1.00        24
+                   Peptic ulcer disease       1.00      1.00      1.00        24
+                              Pneumonia       1.00      1.00      1.00        24
+                              Psoriasis       1.00      1.00      1.00        24
+                           Tuberculosis       1.00      1.00      1.00        24
+                                Typhoid       1.00      1.00      1.00        24
+                Urinary Tract Infection       1.00      1.00      1.00        24
+                         Varicose Veins       1.00      1.00      1.00        24
+
+                               accuracy                           1.00       984
+                              macro avg       1.00      1.00      1.00       984
+                           weighted avg       1.00      1.00      1.00       984
+

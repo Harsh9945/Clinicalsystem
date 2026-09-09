@@ -1,0 +1,1298 @@
+{
+    "(vertigo) Paroxysmal Positional Vertigo": {
+        "disease": "(vertigo) Paroxysmal Positional Vertigo",
+        "description": "Benign paroxysmal positional vertigo (BPPV) is one of the most common causes of vertigo \u2014 the sudden sensation that you're spinning or that the inside of your head is spinning. Benign paroxysmal positional vertigo causes brief episodes of mild to intense dizziness.",
+        "hallmark_symptoms": [
+            "vomiting",
+            "headache",
+            "nausea",
+            "spinning_movements",
+            "loss_of_balance",
+            "unsteadiness"
+        ],
+        "readable_symptoms": [
+            "vomiting",
+            "headache",
+            "nausea",
+            "spinning movements",
+            "loss of balance",
+            "unsteadiness"
+        ],
+        "precautions": [
+            "lie down",
+            "avoid sudden change in body",
+            "avoid abrupt head movment",
+            "relax"
+        ],
+        "specialist": "ENT Specialist / Neurologist",
+        "search_content": "Disease: (vertigo) Paroxysmal Positional Vertigo\nMedical Overview: Benign paroxysmal positional vertigo (BPPV) is one of the most common causes of vertigo \u2014 the sudden sensation that you're spinning or that the inside of your head is spinning. Benign paroxysmal positional vertigo causes brief episodes of mild to intense dizziness.\nHallmark Symptoms: vomiting, headache, nausea, spinning movements, loss of balance, unsteadiness\nRecommended Precautions & Management: lie down; avoid sudden change in body; avoid abrupt head movment; relax\nRecommended Specialist: ENT Specialist / Neurologist"
+    },
+    "AIDS": {
+        "disease": "AIDS",
+        "description": "Acquired immunodeficiency syndrome (AIDS) is a chronic, potentially life-threatening condition caused by the human immunodeficiency virus (HIV). By damaging your immune system, HIV interferes with your body's ability to fight infection and disease.",
+        "hallmark_symptoms": [
+            "muscle_wasting",
+            "patches_in_throat",
+            "high_fever",
+            "extra_marital_contacts"
+        ],
+        "readable_symptoms": [
+            "muscle wasting",
+            "patches in throat",
+            "high fever",
+            "extra marital contacts"
+        ],
+        "precautions": [
+            "avoid open cuts",
+            "wear ppe if possible",
+            "consult doctor",
+            "follow up"
+        ],
+        "specialist": "Infectious Disease Specialist",
+        "search_content": "Disease: AIDS\nMedical Overview: Acquired immunodeficiency syndrome (AIDS) is a chronic, potentially life-threatening condition caused by the human immunodeficiency virus (HIV). By damaging your immune system, HIV interferes with your body's ability to fight infection and disease.\nHallmark Symptoms: muscle wasting, patches in throat, high fever, extra marital contacts\nRecommended Precautions & Management: avoid open cuts; wear ppe if possible; consult doctor; follow up\nRecommended Specialist: Infectious Disease Specialist"
+    },
+    "Acne": {
+        "disease": "Acne",
+        "description": "Acne vulgaris is the formation of comedones, papules, pustules, nodules, and/or cysts as a result of obstruction and inflammation of pilosebaceous units (hair follicles and their accompanying sebaceous gland). Acne develops on the face and upper trunk. It most often affects adolescents.",
+        "hallmark_symptoms": [
+            "skin_rash",
+            "pus_filled_pimples",
+            "blackheads",
+            "scurring"
+        ],
+        "readable_symptoms": [
+            "skin rash",
+            "pus filled pimples",
+            "blackheads",
+            "scurring"
+        ],
+        "precautions": [
+            "bath twice",
+            "avoid fatty spicy food",
+            "drink plenty of water",
+            "avoid too many products"
+        ],
+        "specialist": "Dermatologist",
+        "search_content": "Disease: Acne\nMedical Overview: Acne vulgaris is the formation of comedones, papules, pustules, nodules, and/or cysts as a result of obstruction and inflammation of pilosebaceous units (hair follicles and their accompanying sebaceous gland). Acne develops on the face and upper trunk. It most often affects adolescents.\nHallmark Symptoms: skin rash, pus filled pimples, blackheads, scurring\nRecommended Precautions & Management: bath twice; avoid fatty spicy food; drink plenty of water; avoid too many products\nRecommended Specialist: Dermatologist"
+    },
+    "Alcoholic Hepatitis": {
+        "disease": "Alcoholic Hepatitis",
+        "description": "Alcoholic hepatitis is a diseased, inflammatory condition of the liver caused by heavy alcohol consumption over an extended period of time. It's also aggravated by binge drinking and ongoing alcohol use. If you develop this condition, you must stop drinking alcohol",
+        "hallmark_symptoms": [
+            "vomiting",
+            "yellowish_skin",
+            "abdominal_pain",
+            "swelling_of_stomach",
+            "distention_of_abdomen",
+            "history_of_alcohol_consumption",
+            "fluid_overload.1"
+        ],
+        "readable_symptoms": [
+            "vomiting",
+            "yellowish skin",
+            "abdominal pain",
+            "swelling of stomach",
+            "distention of abdomen",
+            "history of alcohol consumption",
+            "fluid overload.1"
+        ],
+        "precautions": [
+            "stop alcohol consumption",
+            "consult doctor",
+            "medication",
+            "follow up"
+        ],
+        "specialist": "Gastroenterologist / Hepatologist",
+        "search_content": "Disease: Alcoholic Hepatitis\nMedical Overview: Alcoholic hepatitis is a diseased, inflammatory condition of the liver caused by heavy alcohol consumption over an extended period of time. It's also aggravated by binge drinking and ongoing alcohol use. If you develop this condition, you must stop drinking alcohol\nHallmark Symptoms: vomiting, yellowish skin, abdominal pain, swelling of stomach, distention of abdomen, history of alcohol consumption, fluid overload.1\nRecommended Precautions & Management: stop alcohol consumption; consult doctor; medication; follow up\nRecommended Specialist: Gastroenterologist / Hepatologist"
+    },
+    "Allergy": {
+        "disease": "Allergy",
+        "description": "An allergy is an immune system response to a foreign substance that's not typically harmful to your body.They can include certain foods, pollen, or pet dander. Your immune system's job is to keep you healthy by fighting harmful pathogens.",
+        "hallmark_symptoms": [
+            "continuous_sneezing",
+            "shivering",
+            "chills",
+            "watering_from_eyes"
+        ],
+        "readable_symptoms": [
+            "continuous sneezing",
+            "shivering",
+            "chills",
+            "watering from eyes"
+        ],
+        "precautions": [
+            "apply calamine",
+            "cover area with bandage",
+            "use ice to compress itching"
+        ],
+        "specialist": "Allergist",
+        "search_content": "Disease: Allergy\nMedical Overview: An allergy is an immune system response to a foreign substance that's not typically harmful to your body.They can include certain foods, pollen, or pet dander. Your immune system's job is to keep you healthy by fighting harmful pathogens.\nHallmark Symptoms: continuous sneezing, shivering, chills, watering from eyes\nRecommended Precautions & Management: apply calamine; cover area with bandage; use ice to compress itching\nRecommended Specialist: Allergist"
+    },
+    "Arthritis": {
+        "disease": "Arthritis",
+        "description": "Arthritis is the swelling and tenderness of one or more of your joints. The main symptoms of arthritis are joint pain and stiffness, which typically worsen with age. The most common types of arthritis are osteoarthritis and rheumatoid arthritis.",
+        "hallmark_symptoms": [
+            "muscle_weakness",
+            "stiff_neck",
+            "swelling_joints",
+            "movement_stiffness",
+            "painful_walking"
+        ],
+        "readable_symptoms": [
+            "muscle weakness",
+            "stiff neck",
+            "swelling joints",
+            "movement stiffness",
+            "painful walking"
+        ],
+        "precautions": [
+            "exercise",
+            "use hot and cold therapy",
+            "try acupuncture",
+            "massage"
+        ],
+        "specialist": "Rheumatologist",
+        "search_content": "Disease: Arthritis\nMedical Overview: Arthritis is the swelling and tenderness of one or more of your joints. The main symptoms of arthritis are joint pain and stiffness, which typically worsen with age. The most common types of arthritis are osteoarthritis and rheumatoid arthritis.\nHallmark Symptoms: muscle weakness, stiff neck, swelling joints, movement stiffness, painful walking\nRecommended Precautions & Management: exercise; use hot and cold therapy; try acupuncture; massage\nRecommended Specialist: Rheumatologist"
+    },
+    "Bronchial Asthma": {
+        "disease": "Bronchial Asthma",
+        "description": "Bronchial asthma is a medical condition which causes the airway path of the lungs to swell and narrow. Due to this swelling, the air path produces excess mucus making it hard to breathe, which results in coughing, short breath, and wheezing. The disease is chronic and interferes with daily working.",
+        "hallmark_symptoms": [
+            "fatigue",
+            "cough",
+            "high_fever",
+            "breathlessness",
+            "family_history",
+            "mucoid_sputum"
+        ],
+        "readable_symptoms": [
+            "fatigue",
+            "cough",
+            "high fever",
+            "breathlessness",
+            "family history",
+            "mucoid sputum"
+        ],
+        "precautions": [
+            "switch to loose cloothing",
+            "take deep breaths",
+            "get away from trigger",
+            "seek help"
+        ],
+        "specialist": "Pulmonologist",
+        "search_content": "Disease: Bronchial Asthma\nMedical Overview: Bronchial asthma is a medical condition which causes the airway path of the lungs to swell and narrow. Due to this swelling, the air path produces excess mucus making it hard to breathe, which results in coughing, short breath, and wheezing. The disease is chronic and interferes with daily working.\nHallmark Symptoms: fatigue, cough, high fever, breathlessness, family history, mucoid sputum\nRecommended Precautions & Management: switch to loose cloothing; take deep breaths; get away from trigger; seek help\nRecommended Specialist: Pulmonologist"
+    },
+    "Cervical Spondylosis": {
+        "disease": "Cervical Spondylosis",
+        "description": "Cervical spondylosis is a general term for age-related wear and tear affecting the spinal disks in your neck. As the disks dehydrate and shrink, signs of osteoarthritis develop, including bony projections along the edges of bones (bone spurs).",
+        "hallmark_symptoms": [
+            "back_pain",
+            "weakness_in_limbs",
+            "neck_pain",
+            "dizziness",
+            "loss_of_balance"
+        ],
+        "readable_symptoms": [
+            "back pain",
+            "weakness in limbs",
+            "neck pain",
+            "dizziness",
+            "loss of balance"
+        ],
+        "precautions": [
+            "use heating pad or cold pack",
+            "exercise",
+            "take otc pain reliver",
+            "consult doctor"
+        ],
+        "specialist": "Orthopedist / Neurologist",
+        "search_content": "Disease: Cervical Spondylosis\nMedical Overview: Cervical spondylosis is a general term for age-related wear and tear affecting the spinal disks in your neck. As the disks dehydrate and shrink, signs of osteoarthritis develop, including bony projections along the edges of bones (bone spurs).\nHallmark Symptoms: back pain, weakness in limbs, neck pain, dizziness, loss of balance\nRecommended Precautions & Management: use heating pad or cold pack; exercise; take otc pain reliver; consult doctor\nRecommended Specialist: Orthopedist / Neurologist"
+    },
+    "Chicken Pox": {
+        "disease": "Chicken Pox",
+        "description": "Chickenpox is a highly contagious disease caused by the varicella-zoster virus (VZV). It can cause an itchy, blister-like rash. The rash first appears on the chest, back, and face, and then spreads over the entire body, causing between 250 and 500 itchy blisters.",
+        "hallmark_symptoms": [
+            "itching",
+            "skin_rash",
+            "fatigue",
+            "lethargy",
+            "high_fever",
+            "headache",
+            "loss_of_appetite",
+            "mild_fever",
+            "swelled_lymph_nodes",
+            "malaise",
+            "red_spots_over_body"
+        ],
+        "readable_symptoms": [
+            "itching",
+            "skin rash",
+            "fatigue",
+            "lethargy",
+            "high fever",
+            "headache",
+            "loss of appetite",
+            "mild fever",
+            "swelled lymph nodes",
+            "malaise",
+            "red spots over body"
+        ],
+        "precautions": [
+            "use neem in bathing",
+            "consume neem leaves",
+            "take vaccine",
+            "avoid public places"
+        ],
+        "specialist": "General Physician / Dermatologist",
+        "search_content": "Disease: Chicken Pox\nMedical Overview: Chickenpox is a highly contagious disease caused by the varicella-zoster virus (VZV). It can cause an itchy, blister-like rash. The rash first appears on the chest, back, and face, and then spreads over the entire body, causing between 250 and 500 itchy blisters.\nHallmark Symptoms: itching, skin rash, fatigue, lethargy, high fever, headache, loss of appetite, mild fever, swelled lymph nodes, malaise, red spots over body\nRecommended Precautions & Management: use neem in bathing; consume neem leaves; take vaccine; avoid public places\nRecommended Specialist: General Physician / Dermatologist"
+    },
+    "Chronic Cholestasis": {
+        "disease": "Chronic Cholestasis",
+        "description": "Chronic cholestatic diseases, whether occurring in infancy, childhood or adulthood, are characterized by defective bile acid transport from the liver to the intestine, which is caused by primary damage to the biliary epithelium in most cases",
+        "hallmark_symptoms": [
+            "itching",
+            "vomiting",
+            "yellowish_skin",
+            "nausea",
+            "loss_of_appetite",
+            "abdominal_pain",
+            "yellowing_of_eyes"
+        ],
+        "readable_symptoms": [
+            "itching",
+            "vomiting",
+            "yellowish skin",
+            "nausea",
+            "loss of appetite",
+            "abdominal pain",
+            "yellowing of eyes"
+        ],
+        "precautions": [
+            "cold baths",
+            "anti itch medicine",
+            "consult doctor",
+            "eat healthy"
+        ],
+        "specialist": "Gastroenterologist / Hepatologist",
+        "search_content": "Disease: Chronic Cholestasis\nMedical Overview: Chronic cholestatic diseases, whether occurring in infancy, childhood or adulthood, are characterized by defective bile acid transport from the liver to the intestine, which is caused by primary damage to the biliary epithelium in most cases\nHallmark Symptoms: itching, vomiting, yellowish skin, nausea, loss of appetite, abdominal pain, yellowing of eyes\nRecommended Precautions & Management: cold baths; anti itch medicine; consult doctor; eat healthy\nRecommended Specialist: Gastroenterologist / Hepatologist"
+    },
+    "Common Cold": {
+        "disease": "Common Cold",
+        "description": "The common cold is a viral infection of your nose and throat (upper respiratory tract). It's usually harmless, although it might not feel that way. Many types of viruses can cause a common cold.",
+        "hallmark_symptoms": [
+            "continuous_sneezing",
+            "chills",
+            "fatigue",
+            "cough",
+            "high_fever",
+            "headache",
+            "swelled_lymph_nodes",
+            "malaise",
+            "phlegm",
+            "throat_irritation",
+            "redness_of_eyes",
+            "sinus_pressure",
+            "runny_nose",
+            "congestion",
+            "chest_pain",
+            "loss_of_smell",
+            "muscle_pain"
+        ],
+        "readable_symptoms": [
+            "continuous sneezing",
+            "chills",
+            "fatigue",
+            "cough",
+            "high fever",
+            "headache",
+            "swelled lymph nodes",
+            "malaise",
+            "phlegm",
+            "throat irritation",
+            "redness of eyes",
+            "sinus pressure",
+            "runny nose",
+            "congestion",
+            "chest pain",
+            "loss of smell",
+            "muscle pain"
+        ],
+        "precautions": [
+            "drink vitamin c rich drinks",
+            "take vapour",
+            "avoid cold food",
+            "keep fever in check"
+        ],
+        "specialist": "General Physician",
+        "search_content": "Disease: Common Cold\nMedical Overview: The common cold is a viral infection of your nose and throat (upper respiratory tract). It's usually harmless, although it might not feel that way. Many types of viruses can cause a common cold.\nHallmark Symptoms: continuous sneezing, chills, fatigue, cough, high fever, headache, swelled lymph nodes, malaise, phlegm, throat irritation, redness of eyes, sinus pressure, runny nose, congestion, chest pain, loss of smell, muscle pain\nRecommended Precautions & Management: drink vitamin c rich drinks; take vapour; avoid cold food; keep fever in check\nRecommended Specialist: General Physician"
+    },
+    "Dengue": {
+        "disease": "Dengue",
+        "description": "an acute infectious disease caused by a flavivirus (species Dengue virus of the genus Flavivirus), transmitted by aedes mosquitoes, and characterized by headache, severe joint pain, and a rash. \u2014 called also breakbone fever, dengue fever.",
+        "hallmark_symptoms": [
+            "skin_rash",
+            "chills",
+            "joint_pain",
+            "vomiting",
+            "fatigue",
+            "high_fever",
+            "headache",
+            "nausea",
+            "loss_of_appetite",
+            "pain_behind_the_eyes",
+            "back_pain",
+            "malaise",
+            "muscle_pain",
+            "red_spots_over_body"
+        ],
+        "readable_symptoms": [
+            "skin rash",
+            "chills",
+            "joint pain",
+            "vomiting",
+            "fatigue",
+            "high fever",
+            "headache",
+            "nausea",
+            "loss of appetite",
+            "pain behind the eyes",
+            "back pain",
+            "malaise",
+            "muscle pain",
+            "red spots over body"
+        ],
+        "precautions": [
+            "drink papaya leaf juice",
+            "avoid fatty spicy food",
+            "keep mosquitos away",
+            "keep hydrated"
+        ],
+        "specialist": "Infectious Disease Specialist",
+        "search_content": "Disease: Dengue\nMedical Overview: an acute infectious disease caused by a flavivirus (species Dengue virus of the genus Flavivirus), transmitted by aedes mosquitoes, and characterized by headache, severe joint pain, and a rash. \u2014 called also breakbone fever, dengue fever.\nHallmark Symptoms: skin rash, chills, joint pain, vomiting, fatigue, high fever, headache, nausea, loss of appetite, pain behind the eyes, back pain, malaise, muscle pain, red spots over body\nRecommended Precautions & Management: drink papaya leaf juice; avoid fatty spicy food; keep mosquitos away; keep hydrated\nRecommended Specialist: Infectious Disease Specialist"
+    },
+    "Diabetes": {
+        "disease": "Diabetes",
+        "description": "Diabetes is a disease that occurs when your blood glucose, also called blood sugar, is too high. Blood glucose is your main source of energy and comes from the food you eat. Insulin, a hormone made by the pancreas, helps glucose from food get into your cells to be used for energy.",
+        "hallmark_symptoms": [
+            "fatigue",
+            "weight_loss",
+            "restlessness",
+            "lethargy",
+            "irregular_sugar_level",
+            "blurred_and_distorted_vision",
+            "obesity",
+            "excessive_hunger",
+            "increased_appetite",
+            "polyuria"
+        ],
+        "readable_symptoms": [
+            "fatigue",
+            "weight loss",
+            "restlessness",
+            "lethargy",
+            "irregular sugar level",
+            "blurred and distorted vision",
+            "obesity",
+            "excessive hunger",
+            "increased appetite",
+            "polyuria"
+        ],
+        "precautions": [
+            "have balanced diet",
+            "exercise",
+            "consult doctor",
+            "follow up"
+        ],
+        "specialist": "Endocrinologist",
+        "search_content": "Disease: Diabetes\nMedical Overview: Diabetes is a disease that occurs when your blood glucose, also called blood sugar, is too high. Blood glucose is your main source of energy and comes from the food you eat. Insulin, a hormone made by the pancreas, helps glucose from food get into your cells to be used for energy.\nHallmark Symptoms: fatigue, weight loss, restlessness, lethargy, irregular sugar level, blurred and distorted vision, obesity, excessive hunger, increased appetite, polyuria\nRecommended Precautions & Management: have balanced diet; exercise; consult doctor; follow up\nRecommended Specialist: Endocrinologist"
+    },
+    "Dimorphic hemorrhoids (piles)": {
+        "disease": "Dimorphic hemorrhoids (piles)",
+        "description": "Hemorrhoids, also spelled haemorrhoids, are vascular structures in the anal canal. In their ... Other names, Haemorrhoids, piles, hemorrhoidal disease .",
+        "hallmark_symptoms": [
+            "constipation",
+            "pain_during_bowel_movements",
+            "pain_in_anal_region",
+            "bloody_stool",
+            "irritation_in_anus"
+        ],
+        "readable_symptoms": [
+            "constipation",
+            "pain during bowel movements",
+            "pain in anal region",
+            "bloody stool",
+            "irritation in anus"
+        ],
+        "precautions": [
+            "avoid fatty spicy food",
+            "consume witch hazel",
+            "warm bath with epsom salt",
+            "consume alovera juice"
+        ],
+        "specialist": "General Surgeon / Proctologist",
+        "search_content": "Disease: Dimorphic hemorrhoids (piles)\nMedical Overview: Hemorrhoids, also spelled haemorrhoids, are vascular structures in the anal canal. In their ... Other names, Haemorrhoids, piles, hemorrhoidal disease .\nHallmark Symptoms: constipation, pain during bowel movements, pain in anal region, bloody stool, irritation in anus\nRecommended Precautions & Management: avoid fatty spicy food; consume witch hazel; warm bath with epsom salt; consume alovera juice\nRecommended Specialist: General Surgeon / Proctologist"
+    },
+    "Drug Reaction": {
+        "disease": "Drug Reaction",
+        "description": "An adverse drug reaction (ADR) is an injury caused by taking medication. ADRs may occur following a single dose or prolonged administration of a drug or result from the combination of two or more drugs.",
+        "hallmark_symptoms": [
+            "itching",
+            "skin_rash",
+            "stomach_pain",
+            "burning_micturition",
+            "spotting_ urination"
+        ],
+        "readable_symptoms": [
+            "itching",
+            "skin rash",
+            "stomach pain",
+            "burning micturition",
+            "spotting  urination"
+        ],
+        "precautions": [
+            "stop irritation",
+            "consult nearest hospital",
+            "stop taking drug",
+            "follow up"
+        ],
+        "specialist": "Allergist / Dermatologist",
+        "search_content": "Disease: Drug Reaction\nMedical Overview: An adverse drug reaction (ADR) is an injury caused by taking medication. ADRs may occur following a single dose or prolonged administration of a drug or result from the combination of two or more drugs.\nHallmark Symptoms: itching, skin rash, stomach pain, burning micturition, spotting  urination\nRecommended Precautions & Management: stop irritation; consult nearest hospital; stop taking drug; follow up\nRecommended Specialist: Allergist / Dermatologist"
+    },
+    "Fungal Infection": {
+        "disease": "Fungal Infection",
+        "description": "In humans, fungal infections occur when an invading fungus takes over an area of the body and is too much for the immune system to handle. Fungi can live in the air, soil, water, and plants. There are also some fungi that live naturally in the human body. Like many microbes, there are helpful fungi and harmful fungi.",
+        "hallmark_symptoms": [
+            "itching",
+            "skin_rash",
+            "nodal_skin_eruptions",
+            "dischromic _patches"
+        ],
+        "readable_symptoms": [
+            "itching",
+            "skin rash",
+            "nodal skin eruptions",
+            "dischromic  patches"
+        ],
+        "precautions": [
+            "bath twice",
+            "use detol or neem in bathing water",
+            "keep infected area dry",
+            "use clean cloths"
+        ],
+        "specialist": "Dermatologist",
+        "search_content": "Disease: Fungal Infection\nMedical Overview: In humans, fungal infections occur when an invading fungus takes over an area of the body and is too much for the immune system to handle. Fungi can live in the air, soil, water, and plants. There are also some fungi that live naturally in the human body. Like many microbes, there are helpful fungi and harmful fungi.\nHallmark Symptoms: itching, skin rash, nodal skin eruptions, dischromic  patches\nRecommended Precautions & Management: bath twice; use detol or neem in bathing water; keep infected area dry; use clean cloths\nRecommended Specialist: Dermatologist"
+    },
+    "GERD": {
+        "disease": "GERD",
+        "description": "Gastroesophageal reflux disease, or GERD, is a digestive disorder that affects the lower esophageal sphincter (LES), the ring of muscle between the esophagus and stomach. Many people, including pregnant women, suffer from heartburn or acid indigestion caused by GERD.",
+        "hallmark_symptoms": [
+            "stomach_pain",
+            "acidity",
+            "ulcers_on_tongue",
+            "vomiting",
+            "cough",
+            "chest_pain"
+        ],
+        "readable_symptoms": [
+            "stomach pain",
+            "acidity",
+            "ulcers on tongue",
+            "vomiting",
+            "cough",
+            "chest pain"
+        ],
+        "precautions": [
+            "avoid fatty spicy food",
+            "avoid lying down after eating",
+            "maintain healthy weight",
+            "exercise"
+        ],
+        "specialist": "Gastroenterologist",
+        "search_content": "Disease: GERD\nMedical Overview: Gastroesophageal reflux disease, or GERD, is a digestive disorder that affects the lower esophageal sphincter (LES), the ring of muscle between the esophagus and stomach. Many people, including pregnant women, suffer from heartburn or acid indigestion caused by GERD.\nHallmark Symptoms: stomach pain, acidity, ulcers on tongue, vomiting, cough, chest pain\nRecommended Precautions & Management: avoid fatty spicy food; avoid lying down after eating; maintain healthy weight; exercise\nRecommended Specialist: Gastroenterologist"
+    },
+    "Gastroenteritis": {
+        "disease": "Gastroenteritis",
+        "description": "Gastroenteritis is an inflammation of the digestive tract, particularly the stomach, and large and small intestines. Viral and bacterial gastroenteritis are intestinal infections associated with symptoms of diarrhea , abdominal cramps, nausea , and vomiting .",
+        "hallmark_symptoms": [
+            "vomiting",
+            "sunken_eyes",
+            "dehydration",
+            "diarrhoea"
+        ],
+        "readable_symptoms": [
+            "vomiting",
+            "sunken eyes",
+            "dehydration",
+            "diarrhoea"
+        ],
+        "precautions": [
+            "stop eating solid food for while",
+            "try taking small sips of water",
+            "rest",
+            "ease back into eating"
+        ],
+        "specialist": "Gastroenterologist",
+        "search_content": "Disease: Gastroenteritis\nMedical Overview: Gastroenteritis is an inflammation of the digestive tract, particularly the stomach, and large and small intestines. Viral and bacterial gastroenteritis are intestinal infections associated with symptoms of diarrhea , abdominal cramps, nausea , and vomiting .\nHallmark Symptoms: vomiting, sunken eyes, dehydration, diarrhoea\nRecommended Precautions & Management: stop eating solid food for while; try taking small sips of water; rest; ease back into eating\nRecommended Specialist: Gastroenterologist"
+    },
+    "Heart Attack": {
+        "disease": "Heart Attack",
+        "description": "The death of heart muscle due to the loss of blood supply. The loss of blood supply is usually caused by a complete blockage of a coronary artery, one of the arteries that supplies blood to the heart muscle.",
+        "hallmark_symptoms": [
+            "vomiting",
+            "breathlessness",
+            "sweating",
+            "chest_pain"
+        ],
+        "readable_symptoms": [
+            "vomiting",
+            "breathlessness",
+            "sweating",
+            "chest pain"
+        ],
+        "precautions": [
+            "call ambulance",
+            "chew or swallow asprin",
+            "keep calm"
+        ],
+        "specialist": "Cardiologist",
+        "search_content": "Disease: Heart Attack\nMedical Overview: The death of heart muscle due to the loss of blood supply. The loss of blood supply is usually caused by a complete blockage of a coronary artery, one of the arteries that supplies blood to the heart muscle.\nHallmark Symptoms: vomiting, breathlessness, sweating, chest pain\nRecommended Precautions & Management: call ambulance; chew or swallow asprin; keep calm\nRecommended Specialist: Cardiologist"
+    },
+    "Hepatitis A": {
+        "disease": "Hepatitis A",
+        "description": "Hepatitis A is a highly contagious liver infection caused by the hepatitis A virus. The virus is one of several types of hepatitis viruses that cause inflammation and affect your liver's ability to function.",
+        "hallmark_symptoms": [
+            "joint_pain",
+            "vomiting",
+            "yellowish_skin",
+            "dark_urine",
+            "nausea",
+            "loss_of_appetite",
+            "abdominal_pain",
+            "diarrhoea",
+            "mild_fever",
+            "yellowing_of_eyes",
+            "muscle_pain"
+        ],
+        "readable_symptoms": [
+            "joint pain",
+            "vomiting",
+            "yellowish skin",
+            "dark urine",
+            "nausea",
+            "loss of appetite",
+            "abdominal pain",
+            "diarrhoea",
+            "mild fever",
+            "yellowing of eyes",
+            "muscle pain"
+        ],
+        "precautions": [
+            "Consult nearest hospital",
+            "wash hands through",
+            "avoid fatty spicy food",
+            "medication"
+        ],
+        "specialist": "Gastroenterologist / Hepatologist",
+        "search_content": "Disease: Hepatitis A\nMedical Overview: Hepatitis A is a highly contagious liver infection caused by the hepatitis A virus. The virus is one of several types of hepatitis viruses that cause inflammation and affect your liver's ability to function.\nHallmark Symptoms: joint pain, vomiting, yellowish skin, dark urine, nausea, loss of appetite, abdominal pain, diarrhoea, mild fever, yellowing of eyes, muscle pain\nRecommended Precautions & Management: Consult nearest hospital; wash hands through; avoid fatty spicy food; medication\nRecommended Specialist: Gastroenterologist / Hepatologist"
+    },
+    "Hepatitis B": {
+        "disease": "Hepatitis B",
+        "description": "Hepatitis B is an infection of your liver. It can cause scarring of the organ, liver failure, and cancer. It can be fatal if it isn't treated. It's spread when people come in contact with the blood, open sores, or body fluids of someone who has the hepatitis B virus.",
+        "hallmark_symptoms": [
+            "itching",
+            "fatigue",
+            "lethargy",
+            "yellowish_skin",
+            "dark_urine",
+            "loss_of_appetite",
+            "abdominal_pain",
+            "yellow_urine",
+            "yellowing_of_eyes",
+            "malaise",
+            "receiving_blood_transfusion",
+            "receiving_unsterile_injections"
+        ],
+        "readable_symptoms": [
+            "itching",
+            "fatigue",
+            "lethargy",
+            "yellowish skin",
+            "dark urine",
+            "loss of appetite",
+            "abdominal pain",
+            "yellow urine",
+            "yellowing of eyes",
+            "malaise",
+            "receiving blood transfusion",
+            "receiving unsterile injections"
+        ],
+        "precautions": [
+            "consult nearest hospital",
+            "vaccination",
+            "eat healthy",
+            "medication"
+        ],
+        "specialist": "Gastroenterologist / Hepatologist",
+        "search_content": "Disease: Hepatitis B\nMedical Overview: Hepatitis B is an infection of your liver. It can cause scarring of the organ, liver failure, and cancer. It can be fatal if it isn't treated. It's spread when people come in contact with the blood, open sores, or body fluids of someone who has the hepatitis B virus.\nHallmark Symptoms: itching, fatigue, lethargy, yellowish skin, dark urine, loss of appetite, abdominal pain, yellow urine, yellowing of eyes, malaise, receiving blood transfusion, receiving unsterile injections\nRecommended Precautions & Management: consult nearest hospital; vaccination; eat healthy; medication\nRecommended Specialist: Gastroenterologist / Hepatologist"
+    },
+    "Hepatitis C": {
+        "disease": "Hepatitis C",
+        "description": "Inflammation of the liver due to the hepatitis C virus (HCV), which is usually spread via blood transfusion (rare), hemodialysis, and needle sticks. The damage hepatitis C does to the liver can lead to cirrhosis and its complications as well as cancer.",
+        "hallmark_symptoms": [
+            "fatigue",
+            "yellowish_skin",
+            "nausea",
+            "loss_of_appetite",
+            "yellowing_of_eyes",
+            "family_history"
+        ],
+        "readable_symptoms": [
+            "fatigue",
+            "yellowish skin",
+            "nausea",
+            "loss of appetite",
+            "yellowing of eyes",
+            "family history"
+        ],
+        "precautions": [
+            "Consult nearest hospital",
+            "vaccination",
+            "eat healthy",
+            "medication"
+        ],
+        "specialist": "Gastroenterologist / Hepatologist",
+        "search_content": "Disease: Hepatitis C\nMedical Overview: Inflammation of the liver due to the hepatitis C virus (HCV), which is usually spread via blood transfusion (rare), hemodialysis, and needle sticks. The damage hepatitis C does to the liver can lead to cirrhosis and its complications as well as cancer.\nHallmark Symptoms: fatigue, yellowish skin, nausea, loss of appetite, yellowing of eyes, family history\nRecommended Precautions & Management: Consult nearest hospital; vaccination; eat healthy; medication\nRecommended Specialist: Gastroenterologist / Hepatologist"
+    },
+    "Hepatitis D": {
+        "disease": "Hepatitis D",
+        "description": "Hepatitis D, also known as the hepatitis delta virus, is an infection that causes the liver to become inflamed. This swelling can impair liver function and cause long-term liver problems, including liver scarring and cancer. The condition is caused by the hepatitis D virus (HDV).",
+        "hallmark_symptoms": [
+            "joint_pain",
+            "vomiting",
+            "fatigue",
+            "yellowish_skin",
+            "dark_urine",
+            "nausea",
+            "loss_of_appetite",
+            "abdominal_pain",
+            "yellowing_of_eyes"
+        ],
+        "readable_symptoms": [
+            "joint pain",
+            "vomiting",
+            "fatigue",
+            "yellowish skin",
+            "dark urine",
+            "nausea",
+            "loss of appetite",
+            "abdominal pain",
+            "yellowing of eyes"
+        ],
+        "precautions": [
+            "consult doctor",
+            "medication",
+            "eat healthy",
+            "follow up"
+        ],
+        "specialist": "Gastroenterologist / Hepatologist",
+        "search_content": "Disease: Hepatitis D\nMedical Overview: Hepatitis D, also known as the hepatitis delta virus, is an infection that causes the liver to become inflamed. This swelling can impair liver function and cause long-term liver problems, including liver scarring and cancer. The condition is caused by the hepatitis D virus (HDV).\nHallmark Symptoms: joint pain, vomiting, fatigue, yellowish skin, dark urine, nausea, loss of appetite, abdominal pain, yellowing of eyes\nRecommended Precautions & Management: consult doctor; medication; eat healthy; follow up\nRecommended Specialist: Gastroenterologist / Hepatologist"
+    },
+    "Hepatitis E": {
+        "disease": "Hepatitis E",
+        "description": "A rare form of liver inflammation caused by infection with the hepatitis E virus (HEV). It is transmitted via food or drink handled by an infected person or through infected water supplies in areas where fecal matter may get into the water. Hepatitis E does not cause chronic liver disease.",
+        "hallmark_symptoms": [
+            "joint_pain",
+            "vomiting",
+            "fatigue",
+            "high_fever",
+            "yellowish_skin",
+            "dark_urine",
+            "nausea",
+            "loss_of_appetite",
+            "abdominal_pain",
+            "yellowing_of_eyes",
+            "acute_liver_failure",
+            "coma",
+            "stomach_bleeding"
+        ],
+        "readable_symptoms": [
+            "joint pain",
+            "vomiting",
+            "fatigue",
+            "high fever",
+            "yellowish skin",
+            "dark urine",
+            "nausea",
+            "loss of appetite",
+            "abdominal pain",
+            "yellowing of eyes",
+            "acute liver failure",
+            "coma",
+            "stomach bleeding"
+        ],
+        "precautions": [
+            "stop alcohol consumption",
+            "rest",
+            "consult doctor",
+            "medication"
+        ],
+        "specialist": "Gastroenterologist / Hepatologist",
+        "search_content": "Disease: Hepatitis E\nMedical Overview: A rare form of liver inflammation caused by infection with the hepatitis E virus (HEV). It is transmitted via food or drink handled by an infected person or through infected water supplies in areas where fecal matter may get into the water. Hepatitis E does not cause chronic liver disease.\nHallmark Symptoms: joint pain, vomiting, fatigue, high fever, yellowish skin, dark urine, nausea, loss of appetite, abdominal pain, yellowing of eyes, acute liver failure, coma, stomach bleeding\nRecommended Precautions & Management: stop alcohol consumption; rest; consult doctor; medication\nRecommended Specialist: Gastroenterologist / Hepatologist"
+    },
+    "Hypertension": {
+        "disease": "Hypertension",
+        "description": "Hypertension (HTN or HT), also known as high blood pressure (HBP), is a long-term medical condition in which the blood pressure in the arteries is persistently elevated. High blood pressure typically does not cause symptoms.",
+        "hallmark_symptoms": [
+            "headache",
+            "chest_pain",
+            "dizziness",
+            "loss_of_balance",
+            "lack_of_concentration"
+        ],
+        "readable_symptoms": [
+            "headache",
+            "chest pain",
+            "dizziness",
+            "loss of balance",
+            "lack of concentration"
+        ],
+        "precautions": [
+            "meditation",
+            "salt baths",
+            "reduce stress",
+            "get proper sleep"
+        ],
+        "specialist": "Cardiologist",
+        "search_content": "Disease: Hypertension\nMedical Overview: Hypertension (HTN or HT), also known as high blood pressure (HBP), is a long-term medical condition in which the blood pressure in the arteries is persistently elevated. High blood pressure typically does not cause symptoms.\nHallmark Symptoms: headache, chest pain, dizziness, loss of balance, lack of concentration\nRecommended Precautions & Management: meditation; salt baths; reduce stress; get proper sleep\nRecommended Specialist: Cardiologist"
+    },
+    "Hyperthyroidism": {
+        "disease": "Hyperthyroidism",
+        "description": "Hyperthyroidism (overactive thyroid) occurs when your thyroid gland produces too much of the hormone thyroxine. Hyperthyroidism can accelerate your body's metabolism, causing unintentional weight loss and a rapid or irregular heartbeat.",
+        "hallmark_symptoms": [
+            "fatigue",
+            "mood_swings",
+            "weight_loss",
+            "restlessness",
+            "sweating",
+            "diarrhoea",
+            "fast_heart_rate",
+            "excessive_hunger",
+            "muscle_weakness",
+            "irritability",
+            "abnormal_menstruation"
+        ],
+        "readable_symptoms": [
+            "fatigue",
+            "mood swings",
+            "weight loss",
+            "restlessness",
+            "sweating",
+            "diarrhoea",
+            "fast heart rate",
+            "excessive hunger",
+            "muscle weakness",
+            "irritability",
+            "abnormal menstruation"
+        ],
+        "precautions": [
+            "eat healthy",
+            "massage",
+            "use lemon balm",
+            "take radioactive iodine treatment"
+        ],
+        "specialist": "Endocrinologist",
+        "search_content": "Disease: Hyperthyroidism\nMedical Overview: Hyperthyroidism (overactive thyroid) occurs when your thyroid gland produces too much of the hormone thyroxine. Hyperthyroidism can accelerate your body's metabolism, causing unintentional weight loss and a rapid or irregular heartbeat.\nHallmark Symptoms: fatigue, mood swings, weight loss, restlessness, sweating, diarrhoea, fast heart rate, excessive hunger, muscle weakness, irritability, abnormal menstruation\nRecommended Precautions & Management: eat healthy; massage; use lemon balm; take radioactive iodine treatment\nRecommended Specialist: Endocrinologist"
+    },
+    "Hypoglycemia": {
+        "disease": "Hypoglycemia",
+        "description": "Hypoglycemia is a condition in which your blood sugar (glucose) level is lower than normal. Glucose is your body's main energy source. Hypoglycemia is often related to diabetes treatment. But other drugs and a variety of conditions \u2014 many rare \u2014 can cause low blood sugar in people who don't have diabetes.",
+        "hallmark_symptoms": [
+            "vomiting",
+            "fatigue",
+            "anxiety",
+            "sweating",
+            "headache",
+            "nausea",
+            "blurred_and_distorted_vision",
+            "excessive_hunger",
+            "drying_and_tingling_lips",
+            "slurred_speech",
+            "irritability",
+            "palpitations"
+        ],
+        "readable_symptoms": [
+            "vomiting",
+            "fatigue",
+            "anxiety",
+            "sweating",
+            "headache",
+            "nausea",
+            "blurred and distorted vision",
+            "excessive hunger",
+            "drying and tingling lips",
+            "slurred speech",
+            "irritability",
+            "palpitations"
+        ],
+        "precautions": [
+            "lie down on side",
+            "check in pulse",
+            "drink sugary drinks",
+            "consult doctor"
+        ],
+        "specialist": "Endocrinologist",
+        "search_content": "Disease: Hypoglycemia\nMedical Overview: Hypoglycemia is a condition in which your blood sugar (glucose) level is lower than normal. Glucose is your body's main energy source. Hypoglycemia is often related to diabetes treatment. But other drugs and a variety of conditions \u2014 many rare \u2014 can cause low blood sugar in people who don't have diabetes.\nHallmark Symptoms: vomiting, fatigue, anxiety, sweating, headache, nausea, blurred and distorted vision, excessive hunger, drying and tingling lips, slurred speech, irritability, palpitations\nRecommended Precautions & Management: lie down on side; check in pulse; drink sugary drinks; consult doctor\nRecommended Specialist: Endocrinologist"
+    },
+    "Hypothyroidism": {
+        "disease": "Hypothyroidism",
+        "description": "Hypothyroidism, also called underactive thyroid or low thyroid, is a disorder of the endocrine system in which the thyroid gland does not produce enough thyroid hormone.",
+        "hallmark_symptoms": [
+            "fatigue",
+            "weight_gain",
+            "cold_hands_and_feets",
+            "mood_swings",
+            "lethargy",
+            "dizziness",
+            "puffy_face_and_eyes",
+            "enlarged_thyroid",
+            "brittle_nails",
+            "swollen_extremeties",
+            "depression",
+            "irritability",
+            "abnormal_menstruation"
+        ],
+        "readable_symptoms": [
+            "fatigue",
+            "weight gain",
+            "cold hands and feets",
+            "mood swings",
+            "lethargy",
+            "dizziness",
+            "puffy face and eyes",
+            "enlarged thyroid",
+            "brittle nails",
+            "swollen extremeties",
+            "depression",
+            "irritability",
+            "abnormal menstruation"
+        ],
+        "precautions": [
+            "reduce stress",
+            "exercise",
+            "eat healthy",
+            "get proper sleep"
+        ],
+        "specialist": "Endocrinologist",
+        "search_content": "Disease: Hypothyroidism\nMedical Overview: Hypothyroidism, also called underactive thyroid or low thyroid, is a disorder of the endocrine system in which the thyroid gland does not produce enough thyroid hormone.\nHallmark Symptoms: fatigue, weight gain, cold hands and feets, mood swings, lethargy, dizziness, puffy face and eyes, enlarged thyroid, brittle nails, swollen extremeties, depression, irritability, abnormal menstruation\nRecommended Precautions & Management: reduce stress; exercise; eat healthy; get proper sleep\nRecommended Specialist: Endocrinologist"
+    },
+    "Impetigo": {
+        "disease": "Impetigo",
+        "description": "Impetigo (im-puh-TIE-go) is a common and highly contagious skin infection that mainly affects infants and children. Impetigo usually appears as red sores on the face, especially around a child's nose and mouth, and on hands and feet. The sores burst and develop honey-colored crusts.",
+        "hallmark_symptoms": [
+            "skin_rash",
+            "high_fever",
+            "blister",
+            "red_sore_around_nose",
+            "yellow_crust_ooze"
+        ],
+        "readable_symptoms": [
+            "skin rash",
+            "high fever",
+            "blister",
+            "red sore around nose",
+            "yellow crust ooze"
+        ],
+        "precautions": [
+            "soak affected area in warm water",
+            "use antibiotics",
+            "remove scabs with wet compressed cloth",
+            "consult doctor"
+        ],
+        "specialist": "Dermatologist",
+        "search_content": "Disease: Impetigo\nMedical Overview: Impetigo (im-puh-TIE-go) is a common and highly contagious skin infection that mainly affects infants and children. Impetigo usually appears as red sores on the face, especially around a child's nose and mouth, and on hands and feet. The sores burst and develop honey-colored crusts.\nHallmark Symptoms: skin rash, high fever, blister, red sore around nose, yellow crust ooze\nRecommended Precautions & Management: soak affected area in warm water; use antibiotics; remove scabs with wet compressed cloth; consult doctor\nRecommended Specialist: Dermatologist"
+    },
+    "Jaundice": {
+        "disease": "Jaundice",
+        "description": "Yellow staining of the skin and sclerae (the whites of the eyes) by abnormally high blood levels of the bile pigment bilirubin. The yellowing extends to other tissues and body fluids. Jaundice was once called the \"morbus regius\" (the regal disease) in the belief that only the touch of a king could cure it",
+        "hallmark_symptoms": [
+            "itching",
+            "vomiting",
+            "fatigue",
+            "weight_loss",
+            "high_fever",
+            "yellowish_skin",
+            "dark_urine",
+            "abdominal_pain"
+        ],
+        "readable_symptoms": [
+            "itching",
+            "vomiting",
+            "fatigue",
+            "weight loss",
+            "high fever",
+            "yellowish skin",
+            "dark urine",
+            "abdominal pain"
+        ],
+        "precautions": [
+            "drink plenty of water",
+            "consume milk thistle",
+            "eat fruits and high fiberous food",
+            "medication"
+        ],
+        "specialist": "Gastroenterologist / Hepatologist",
+        "search_content": "Disease: Jaundice\nMedical Overview: Yellow staining of the skin and sclerae (the whites of the eyes) by abnormally high blood levels of the bile pigment bilirubin. The yellowing extends to other tissues and body fluids. Jaundice was once called the \"morbus regius\" (the regal disease) in the belief that only the touch of a king could cure it\nHallmark Symptoms: itching, vomiting, fatigue, weight loss, high fever, yellowish skin, dark urine, abdominal pain\nRecommended Precautions & Management: drink plenty of water; consume milk thistle; eat fruits and high fiberous food; medication\nRecommended Specialist: Gastroenterologist / Hepatologist"
+    },
+    "Malaria": {
+        "disease": "Malaria",
+        "description": "An infectious disease caused by protozoan parasites from the Plasmodium family that can be transmitted by the bite of the Anopheles mosquito or by a contaminated needle or transfusion. Falciparum malaria is the most deadly type.",
+        "hallmark_symptoms": [
+            "chills",
+            "vomiting",
+            "high_fever",
+            "sweating",
+            "headache",
+            "nausea",
+            "diarrhoea",
+            "muscle_pain"
+        ],
+        "readable_symptoms": [
+            "chills",
+            "vomiting",
+            "high fever",
+            "sweating",
+            "headache",
+            "nausea",
+            "diarrhoea",
+            "muscle pain"
+        ],
+        "precautions": [
+            "Consult nearest hospital",
+            "avoid oily food",
+            "avoid non veg food",
+            "keep mosquitos out"
+        ],
+        "specialist": "Infectious Disease Specialist",
+        "search_content": "Disease: Malaria\nMedical Overview: An infectious disease caused by protozoan parasites from the Plasmodium family that can be transmitted by the bite of the Anopheles mosquito or by a contaminated needle or transfusion. Falciparum malaria is the most deadly type.\nHallmark Symptoms: chills, vomiting, high fever, sweating, headache, nausea, diarrhoea, muscle pain\nRecommended Precautions & Management: Consult nearest hospital; avoid oily food; avoid non veg food; keep mosquitos out\nRecommended Specialist: Infectious Disease Specialist"
+    },
+    "Migraine": {
+        "disease": "Migraine",
+        "description": "A migraine can cause severe throbbing pain or a pulsing sensation, usually on one side of the head. It's often accompanied by nausea, vomiting, and extreme sensitivity to light and sound. Migraine attacks can last for hours to days, and the pain can be so severe that it interferes with your daily activities.",
+        "hallmark_symptoms": [
+            "acidity",
+            "indigestion",
+            "headache",
+            "blurred_and_distorted_vision",
+            "excessive_hunger",
+            "stiff_neck",
+            "depression",
+            "irritability",
+            "visual_disturbances"
+        ],
+        "readable_symptoms": [
+            "acidity",
+            "indigestion",
+            "headache",
+            "blurred and distorted vision",
+            "excessive hunger",
+            "stiff neck",
+            "depression",
+            "irritability",
+            "visual disturbances"
+        ],
+        "precautions": [
+            "meditation",
+            "reduce stress",
+            "use poloroid glasses in sun",
+            "consult doctor"
+        ],
+        "specialist": "Neurologist",
+        "search_content": "Disease: Migraine\nMedical Overview: A migraine can cause severe throbbing pain or a pulsing sensation, usually on one side of the head. It's often accompanied by nausea, vomiting, and extreme sensitivity to light and sound. Migraine attacks can last for hours to days, and the pain can be so severe that it interferes with your daily activities.\nHallmark Symptoms: acidity, indigestion, headache, blurred and distorted vision, excessive hunger, stiff neck, depression, irritability, visual disturbances\nRecommended Precautions & Management: meditation; reduce stress; use poloroid glasses in sun; consult doctor\nRecommended Specialist: Neurologist"
+    },
+    "Osteoarthritis": {
+        "disease": "Osteoarthritis",
+        "description": "Osteoarthritis is the most common form of arthritis, affecting millions of people worldwide. It occurs when the protective cartilage that cushions the ends of your bones wears down over time.",
+        "hallmark_symptoms": [
+            "joint_pain",
+            "neck_pain",
+            "knee_pain",
+            "hip_joint_pain",
+            "swelling_joints",
+            "painful_walking"
+        ],
+        "readable_symptoms": [
+            "joint pain",
+            "neck pain",
+            "knee pain",
+            "hip joint pain",
+            "swelling joints",
+            "painful walking"
+        ],
+        "precautions": [
+            "acetaminophen",
+            "consult nearest hospital",
+            "follow up",
+            "salt baths"
+        ],
+        "specialist": "Rheumatologist / Orthopedist",
+        "search_content": "Disease: Osteoarthritis\nMedical Overview: Osteoarthritis is the most common form of arthritis, affecting millions of people worldwide. It occurs when the protective cartilage that cushions the ends of your bones wears down over time.\nHallmark Symptoms: joint pain, neck pain, knee pain, hip joint pain, swelling joints, painful walking\nRecommended Precautions & Management: acetaminophen; consult nearest hospital; follow up; salt baths\nRecommended Specialist: Rheumatologist / Orthopedist"
+    },
+    "Paralysis (Brain Hemorrhage)": {
+        "disease": "Paralysis (Brain Hemorrhage)",
+        "description": "Intracerebral hemorrhage (ICH) is when blood suddenly bursts into brain tissue, causing damage to your brain. Symptoms usually appear suddenly during ICH. They include headache, weakness, confusion, and paralysis, particularly on one side of your body.",
+        "hallmark_symptoms": [
+            "vomiting",
+            "headache",
+            "weakness_of_one_body_side",
+            "altered_sensorium"
+        ],
+        "readable_symptoms": [
+            "vomiting",
+            "headache",
+            "weakness of one body side",
+            "altered sensorium"
+        ],
+        "precautions": [
+            "massage",
+            "eat healthy",
+            "exercise",
+            "consult doctor"
+        ],
+        "specialist": "Neurologist",
+        "search_content": "Disease: Paralysis (Brain Hemorrhage)\nMedical Overview: Intracerebral hemorrhage (ICH) is when blood suddenly bursts into brain tissue, causing damage to your brain. Symptoms usually appear suddenly during ICH. They include headache, weakness, confusion, and paralysis, particularly on one side of your body.\nHallmark Symptoms: vomiting, headache, weakness of one body side, altered sensorium\nRecommended Precautions & Management: massage; eat healthy; exercise; consult doctor\nRecommended Specialist: Neurologist"
+    },
+    "Peptic ulcer disease": {
+        "disease": "Peptic ulcer disease",
+        "description": "Peptic ulcer disease (PUD) is a break in the inner lining of the stomach, the first part of the small intestine, or sometimes the lower esophagus. An ulcer in the stomach is called a gastric ulcer, while one in the first part of the intestines is a duodenal ulcer.",
+        "hallmark_symptoms": [
+            "vomiting",
+            "indigestion",
+            "loss_of_appetite",
+            "abdominal_pain",
+            "passage_of_gases",
+            "internal_itching"
+        ],
+        "readable_symptoms": [
+            "vomiting",
+            "indigestion",
+            "loss of appetite",
+            "abdominal pain",
+            "passage of gases",
+            "internal itching"
+        ],
+        "precautions": [
+            "avoid fatty spicy food",
+            "consume probiotic food",
+            "eliminate milk",
+            "limit alcohol"
+        ],
+        "specialist": "Gastroenterologist",
+        "search_content": "Disease: Peptic ulcer disease\nMedical Overview: Peptic ulcer disease (PUD) is a break in the inner lining of the stomach, the first part of the small intestine, or sometimes the lower esophagus. An ulcer in the stomach is called a gastric ulcer, while one in the first part of the intestines is a duodenal ulcer.\nHallmark Symptoms: vomiting, indigestion, loss of appetite, abdominal pain, passage of gases, internal itching\nRecommended Precautions & Management: avoid fatty spicy food; consume probiotic food; eliminate milk; limit alcohol\nRecommended Specialist: Gastroenterologist"
+    },
+    "Pneumonia": {
+        "disease": "Pneumonia",
+        "description": "Pneumonia is an infection in one or both lungs. Bacteria, viruses, and fungi cause it. The infection causes inflammation in the air sacs in your lungs, which are called alveoli. The alveoli fill with fluid or pus, making it difficult to breathe.",
+        "hallmark_symptoms": [
+            "chills",
+            "fatigue",
+            "cough",
+            "high_fever",
+            "breathlessness",
+            "sweating",
+            "malaise",
+            "phlegm",
+            "chest_pain",
+            "fast_heart_rate",
+            "rusty_sputum"
+        ],
+        "readable_symptoms": [
+            "chills",
+            "fatigue",
+            "cough",
+            "high fever",
+            "breathlessness",
+            "sweating",
+            "malaise",
+            "phlegm",
+            "chest pain",
+            "fast heart rate",
+            "rusty sputum"
+        ],
+        "precautions": [
+            "consult doctor",
+            "medication",
+            "rest",
+            "follow up"
+        ],
+        "specialist": "Pulmonologist",
+        "search_content": "Disease: Pneumonia\nMedical Overview: Pneumonia is an infection in one or both lungs. Bacteria, viruses, and fungi cause it. The infection causes inflammation in the air sacs in your lungs, which are called alveoli. The alveoli fill with fluid or pus, making it difficult to breathe.\nHallmark Symptoms: chills, fatigue, cough, high fever, breathlessness, sweating, malaise, phlegm, chest pain, fast heart rate, rusty sputum\nRecommended Precautions & Management: consult doctor; medication; rest; follow up\nRecommended Specialist: Pulmonologist"
+    },
+    "Psoriasis": {
+        "disease": "Psoriasis",
+        "description": "Psoriasis is a common skin disorder that forms thick, red, bumpy patches covered with silvery scales. They can pop up anywhere, but most appear on the scalp, elbows, knees, and lower back. Psoriasis can't be passed from person to person. It does sometimes happen in members of the same family.",
+        "hallmark_symptoms": [
+            "skin_rash",
+            "joint_pain",
+            "skin_peeling",
+            "silver_like_dusting",
+            "small_dents_in_nails",
+            "inflammatory_nails"
+        ],
+        "readable_symptoms": [
+            "skin rash",
+            "joint pain",
+            "skin peeling",
+            "silver like dusting",
+            "small dents in nails",
+            "inflammatory nails"
+        ],
+        "precautions": [
+            "wash hands with warm soapy water",
+            "stop bleeding using pressure",
+            "consult doctor",
+            "salt baths"
+        ],
+        "specialist": "Dermatologist",
+        "search_content": "Disease: Psoriasis\nMedical Overview: Psoriasis is a common skin disorder that forms thick, red, bumpy patches covered with silvery scales. They can pop up anywhere, but most appear on the scalp, elbows, knees, and lower back. Psoriasis can't be passed from person to person. It does sometimes happen in members of the same family.\nHallmark Symptoms: skin rash, joint pain, skin peeling, silver like dusting, small dents in nails, inflammatory nails\nRecommended Precautions & Management: wash hands with warm soapy water; stop bleeding using pressure; consult doctor; salt baths\nRecommended Specialist: Dermatologist"
+    },
+    "Tuberculosis": {
+        "disease": "Tuberculosis",
+        "description": "Tuberculosis (TB) is an infectious disease usually caused by Mycobacterium tuberculosis (MTB) bacteria. Tuberculosis generally affects the lungs, but can also affect other parts of the body. Most infections show no symptoms, in which case it is known as latent tuberculosis.",
+        "hallmark_symptoms": [
+            "chills",
+            "vomiting",
+            "fatigue",
+            "weight_loss",
+            "cough",
+            "high_fever",
+            "breathlessness",
+            "sweating",
+            "loss_of_appetite",
+            "mild_fever",
+            "yellowing_of_eyes",
+            "swelled_lymph_nodes",
+            "malaise",
+            "phlegm",
+            "chest_pain",
+            "blood_in_sputum"
+        ],
+        "readable_symptoms": [
+            "chills",
+            "vomiting",
+            "fatigue",
+            "weight loss",
+            "cough",
+            "high fever",
+            "breathlessness",
+            "sweating",
+            "loss of appetite",
+            "mild fever",
+            "yellowing of eyes",
+            "swelled lymph nodes",
+            "malaise",
+            "phlegm",
+            "chest pain",
+            "blood in sputum"
+        ],
+        "precautions": [
+            "cover mouth",
+            "consult doctor",
+            "medication",
+            "rest"
+        ],
+        "specialist": "Pulmonologist",
+        "search_content": "Disease: Tuberculosis\nMedical Overview: Tuberculosis (TB) is an infectious disease usually caused by Mycobacterium tuberculosis (MTB) bacteria. Tuberculosis generally affects the lungs, but can also affect other parts of the body. Most infections show no symptoms, in which case it is known as latent tuberculosis.\nHallmark Symptoms: chills, vomiting, fatigue, weight loss, cough, high fever, breathlessness, sweating, loss of appetite, mild fever, yellowing of eyes, swelled lymph nodes, malaise, phlegm, chest pain, blood in sputum\nRecommended Precautions & Management: cover mouth; consult doctor; medication; rest\nRecommended Specialist: Pulmonologist"
+    },
+    "Typhoid": {
+        "disease": "Typhoid",
+        "description": "An acute illness characterized by fever caused by infection with the bacterium Salmonella typhi. Typhoid fever has an insidious onset, with fever, headache, constipation, malaise, chills, and muscle pain. Diarrhea is uncommon, and vomiting is not usually severe.",
+        "hallmark_symptoms": [
+            "chills",
+            "vomiting",
+            "fatigue",
+            "high_fever",
+            "headache",
+            "nausea",
+            "constipation",
+            "abdominal_pain",
+            "diarrhoea",
+            "toxic_look_(typhos)",
+            "belly_pain"
+        ],
+        "readable_symptoms": [
+            "chills",
+            "vomiting",
+            "fatigue",
+            "high fever",
+            "headache",
+            "nausea",
+            "constipation",
+            "abdominal pain",
+            "diarrhoea",
+            "toxic look (typhos)",
+            "belly pain"
+        ],
+        "precautions": [
+            "eat high calorie vegitables",
+            "antiboitic therapy",
+            "consult doctor",
+            "medication"
+        ],
+        "specialist": "General Physician",
+        "search_content": "Disease: Typhoid\nMedical Overview: An acute illness characterized by fever caused by infection with the bacterium Salmonella typhi. Typhoid fever has an insidious onset, with fever, headache, constipation, malaise, chills, and muscle pain. Diarrhea is uncommon, and vomiting is not usually severe.\nHallmark Symptoms: chills, vomiting, fatigue, high fever, headache, nausea, constipation, abdominal pain, diarrhoea, toxic look (typhos), belly pain\nRecommended Precautions & Management: eat high calorie vegitables; antiboitic therapy; consult doctor; medication\nRecommended Specialist: General Physician"
+    },
+    "Urinary Tract Infection": {
+        "disease": "Urinary Tract Infection",
+        "description": "Urinary tract infection: An infection of the kidney, ureter, bladder, or urethra. Abbreviated UTI. Not everyone with a UTI has symptoms, but common symptoms include a frequent urge to urinate and pain or burning when urinating.",
+        "hallmark_symptoms": [
+            "burning_micturition",
+            "bladder_discomfort",
+            "foul_smell_of urine",
+            "continuous_feel_of_urine"
+        ],
+        "readable_symptoms": [
+            "burning micturition",
+            "bladder discomfort",
+            "foul smell of urine",
+            "continuous feel of urine"
+        ],
+        "precautions": [
+            "drink plenty of water",
+            "increase vitamin c intake",
+            "drink cranberry juice",
+            "take probiotics"
+        ],
+        "specialist": "Urologist / General Physician",
+        "search_content": "Disease: Urinary Tract Infection\nMedical Overview: Urinary tract infection: An infection of the kidney, ureter, bladder, or urethra. Abbreviated UTI. Not everyone with a UTI has symptoms, but common symptoms include a frequent urge to urinate and pain or burning when urinating.\nHallmark Symptoms: burning micturition, bladder discomfort, foul smell of urine, continuous feel of urine\nRecommended Precautions & Management: drink plenty of water; increase vitamin c intake; drink cranberry juice; take probiotics\nRecommended Specialist: Urologist / General Physician"
+    },
+    "Varicose Veins": {
+        "disease": "Varicose Veins",
+        "description": "A vein that has enlarged and twisted, often appearing as a bulging, blue blood vessel that is clearly visible through the skin. Varicose veins are most common in older adults, particularly women, and occur especially on the legs.",
+        "hallmark_symptoms": [
+            "fatigue",
+            "cramps",
+            "bruising",
+            "obesity",
+            "swollen_legs",
+            "swollen_blood_vessels",
+            "prominent_veins_on_calf"
+        ],
+        "readable_symptoms": [
+            "fatigue",
+            "cramps",
+            "bruising",
+            "obesity",
+            "swollen legs",
+            "swollen blood vessels",
+            "prominent veins on calf"
+        ],
+        "precautions": [
+            "lie down flat and raise the leg high",
+            "use oinments",
+            "use vein compression",
+            "dont stand still for long"
+        ],
+        "specialist": "Vascular Surgeon",
+        "search_content": "Disease: Varicose Veins\nMedical Overview: A vein that has enlarged and twisted, often appearing as a bulging, blue blood vessel that is clearly visible through the skin. Varicose veins are most common in older adults, particularly women, and occur especially on the legs.\nHallmark Symptoms: fatigue, cramps, bruising, obesity, swollen legs, swollen blood vessels, prominent veins on calf\nRecommended Precautions & Management: lie down flat and raise the leg high; use oinments; use vein compression; dont stand still for long\nRecommended Specialist: Vascular Surgeon"
+    }
+}

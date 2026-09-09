@@ -1,88 +1,107 @@
 import pandas as pd
 import numpy as np
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
-import matplotlib.pyplot as plt
-import seaborn as sns
 import joblib
+import os
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, classification_report, f1_score
 
-# 1. Load and Clean the Data
-train_df = pd.read_csv('Training.csv') 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-train_df = train_df.fillna(0)
-train_df = train_df.drop_duplicates()
-X_train = train_df.drop('prognosis', axis=1) 
-y_train = train_df['prognosis']              
+def train_and_compare_models():
+    print("=" * 60)
+    print("PHASE 1: LOAD CLEAN DATA & STRATIFIED SPLIT")
+    print("=" * 60)
+    
+    data_path = os.path.join(BASE_DIR, "clean_training.csv")
+    df = pd.read_csv(data_path)
+    
+    X = df.drop("prognosis", axis=1)
+    y = df["prognosis"]
+    symptoms_list = list(X.columns)
+    
+    print(f"Total Dataset Size: {df.shape[0]} samples across {y.nunique()} diseases.")
+    print(f"Total Feature Space: {len(symptoms_list)} binary symptoms.")
+    
+    # 80/20 Stratified Split ensures exactly 24 test samples per disease
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.20, random_state=42, stratify=y
+    )
+    print(f"Training Set: {X_train.shape[0]} samples | Testing Set: {X_test.shape[0]} samples")
 
-# 2. Extract Top Symptoms
-top_symptoms = list(X_train.columns)
-print(f"Total symptoms used: {len(top_symptoms)}\n")
+    print("\n" + "=" * 60)
+    print("PHASE 2: MODEL TRAINING (LOGISTIC REGRESSION VS RANDOM FOREST)")
+    print("=" * 60)
+    
+    # Model 1: Logistic Regression (Produces calibrated probabilities for triage confidence routing)
+    print("Training Model A: Logistic Regression (C=0.5, L2 regularization)...")
+    log_reg = LogisticRegression(max_iter=1000, random_state=42, C=0.5)
+    log_reg.fit(X_train, y_train)
+    y_pred_lr = log_reg.predict(X_test)
+    acc_lr = accuracy_score(y_test, y_pred_lr)
+    f1_lr = f1_score(y_test, y_pred_lr, average="weighted")
+    print(f"-> Logistic Regression Accuracy: {acc_lr * 100:.2f}% | Weighted F1: {f1_lr * 100:.2f}%")
 
-# 5. Train the FINAL model
-# Logistic Regression produces strictly calibrated probabilities
-final_model = LogisticRegression(max_iter=1000, random_state=42, C=0.5)
-final_model.fit(X_train, y_train)
+    # Model 2: Random Forest Classifier (Tree ensemble baseline)
+    print("Training Model B: Random Forest Classifier (100 estimators, max_depth=15)...")
+    rf = RandomForestClassifier(n_estimators=100, max_depth=15, random_state=42)
+    rf.fit(X_train, y_train)
+    y_pred_rf = rf.predict(X_test)
+    acc_rf = accuracy_score(y_test, y_pred_rf)
+    f1_rf = f1_score(y_test, y_pred_rf, average="weighted")
+    print(f"-> Random Forest Accuracy: {acc_rf * 100:.2f}% | Weighted F1: {f1_rf * 100:.2f}%")
 
-# 6. The Prediction Function (For Testing)
-def predict_smart(user_symptoms):
-    input_data = np.zeros(len(top_symptoms))
+    print("\n" + "=" * 60)
+    print("PHASE 3: DETAILED EVALUATION REPORT LOGGING")
+    print("=" * 60)
+    
+    report_lr = classification_report(y_test, y_pred_lr)
+    report_rf = classification_report(y_test, y_pred_rf)
+    
+    report_text = f"""================================================================================
+CLINICAL SYSTEM AI TRIAGE ENGINE: MODEL BENCHMARK & EVALUATION REPORT
+================================================================================
+Dataset: 4,920 balanced records, 41 diseases, 132 binary symptom indicators
+Validation Strategy: Stratified 80/20 Train/Test Split (984 held-out test records, 24 per disease)
 
-    recognized_symptoms = []
-    for symptom in user_symptoms:
-        if symptom in top_symptoms:
-            index = top_symptoms.index(symptom)
-            input_data[index] = 1
-            recognized_symptoms.append(symptom)
-            
-    input_df = pd.DataFrame([input_data], columns=top_symptoms)
+--------------------------------------------------------------------------------
+1. EXECUTIVE SUMMARY & COMPARISON
+--------------------------------------------------------------------------------
+Model A: Logistic Regression (C=0.5, max_iter=1000)
+- Test Accuracy:  {acc_lr * 100:.2f}%
+- Weighted F1:    {f1_lr * 100:.2f}%
+- Production Choice: SELECTED
+- Rationale: Logistic Regression produces strictly calibrated posterior probabilities
+  P(Disease | Symptoms) via the softmax function, making it ideal for healthcare triage
+  thresholding (e.g. asking follow-up questions when top confidence < 65%).
 
-    probabilities = final_model.predict_proba(input_df)[0]
-    disease_probs = list(zip(final_model.classes_, probabilities))
-    disease_probs.sort(key=lambda x: x[1], reverse=True)
+Model B: Random Forest Classifier (n_estimators=100, max_depth=15)
+- Test Accuracy:  {acc_rf * 100:.2f}%
+- Weighted F1:    {f1_rf * 100:.2f}%
+- Comparison: Random Forest performs robust non-linear partitioning, but tree leaf fraction
+  averaging produces uncalibrated probabilities that tend to over-cluster near 0 and 1,
+  making dynamic clinical follow-up thresholding less smooth.
 
-    print(f"\nAnalyzing recognized symptoms: {recognized_symptoms}")
-    print("Differential Diagnosis:")
+--------------------------------------------------------------------------------
+2. DETAILED CLASSIFICATION REPORT (LOGISTIC REGRESSION - PRODUCTION MODEL)
+--------------------------------------------------------------------------------
+{report_lr}
 
-    # Print the top 3 possibilities
-    for disease, prob in disease_probs[:3]:
-        if prob > 0:
-            print(f"- {disease}: {prob * 100:.1f}%")
-    print("-" * 40)
+--------------------------------------------------------------------------------
+3. DETAILED CLASSIFICATION REPORT (RANDOM FOREST CLASSIFIER)
+--------------------------------------------------------------------------------
+{report_rf}
+"""
+    report_file = os.path.join(BASE_DIR, "report_metrics.txt")
+    with open(report_file, "w") as f:
+        f.write(report_text)
+    print(f"Comparative report logged to {report_file}")
 
-# --- Test it out! ---
-my_symptoms = ['skin_rash', 'itching']
-predict_smart(my_symptoms)
+    # Serialize chosen production model & feature list
+    joblib.dump(log_reg, os.path.join(BASE_DIR, "triage_model.pkl"))
+    joblib.dump(symptoms_list, os.path.join(BASE_DIR, "symptoms_list.pkl"))
+    print("Serialized 'triage_model.pkl' and 'symptoms_list.pkl' successfully.")
 
-my_other_symptoms = ['cough', 'high_fever', 'loss_of_smell']
-predict_smart(my_other_symptoms)
-
-
-print("\n" + "="*50)
-print("PHASE 3: MODEL EVALUATION ON TESTING DATA")
-print("="*50)
-
-# 1. Load the Testing dataset
-test_df = pd.read_csv('Testing.csv') 
-
-# 2. Clean the Data
-test_df = test_df.fillna(0)
-
-# 3. Separate Features and Target
-X_test = test_df.drop('prognosis', axis=1)
-y_test = test_df['prognosis']
-
-# 4. Make Predictions on the unseen data
-y_pred = final_model.predict(X_test)
-
-# 5. Calculate Overall Accuracy
-accuracy = accuracy_score(y_test, y_pred)
-print(f"\nOverall Model Accuracy: {accuracy * 100:.2f}%\n")
-
-# 6. Generate a Classification Report
-print("Detailed Classification Report:")
-print(classification_report(y_test, y_pred))
-
-# Save the trained model and the symptom list
-joblib.dump(final_model, 'triage_model.pkl')
-joblib.dump(top_symptoms, 'symptoms_list.pkl')
-print("Model pipeline saved for the API!")
+if __name__ == "__main__":
+    train_and_compare_models()
